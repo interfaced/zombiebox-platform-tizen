@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://example.com/app" version="0.0.1" viewmodes="maximized">
+	<access origin="*" subdomains="true"/>
+	<author href="http://example.com/author" email="tvapp@example.com">Author</author>
+	<content src="index.html"/>
+	<description xml:lang="en-en">Awesome app!</description>
+	<feature name="http://tizen.org/feature/screen.size.all"/>
+	<icon src="512.jpg" height="423" width="512"/>
+	<name xml:lang="en-en">App</name>
+	<tizen:application id="AAAAAAAAAA.name" package="AAAAAAAAAA" required_version="2.3"/>
+	<tizen:metadata key="http://samsung.com/tv/metadata/prelaunch.support" value="true"/>
+	<tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+	<tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
+	<tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+	<tizen:privilege name="http://tizen.org/feature/network.ethernet"/>
+	<tizen:privilege name="http://tizen.org/feature/network.wifi"/>
+	<tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+	<tizen:privilege name="http://tizen.org/privilege/download"/>
+	<tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+	<tizen:privilege name="http://tizen.org/privilege/notification"/>
+	<tizen:privilege name="http://tizen.org/privilege/system"/>
+	<tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+	<tizen:privilege name="http://tizen.org/privilege/tv.display"/>
+	<tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+	<tizen:privilege name="http://tizen.org/privilege/tv.window"/>
+	<tizen:profile name="tv"/>
+	<tizen:setting screen-orientation="landscape" context-menu="disable" background-support="disable" encryption="disable" install-location="auto"/>
+</widget>
