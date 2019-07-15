@@ -1,6 +1,12 @@
+# 2.0.1 (15.07.2019)
+
+## Fixes
+* Fix `Video` not firing `EVENT_VOLUME_CHANGE`
+* Fix video aspect ratio on 2019 models
+
 # 2.0.0 (13.06.2019)
 
-## Feautes
+## Features
 * Support ZombieBox 2.0
 
 # 2.0.0-alpha.3 (23.05.2019)
