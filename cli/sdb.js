@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 
-const readline = require('readline');
 const path = require('path');
 const http = require('http');
 const dial = require('peer-dial');
@@ -15,6 +14,24 @@ const {execAndConfirm, parseXml} = require('./utils');
 
 const PORT = 26101;
 
+
+/**
+ * @param {string} sdbDir
+ * @param {string=} host
+ * @return {Promise}
+ */
+function connect(sdbDir, host) {
+	const sdb = getSdbBinary(sdbDir);
+
+	return execAndConfirm(
+		`${sdb} connect ${host}`,
+		'connected',
+		'The device was connected'
+	)
+		.catch(() => Promise.reject(
+			new Error(`Couldn't connect to ${host}. Is development mode enabled on the device?`)
+		));
+}
 
 /**
  * @param {string} sdbDir
@@ -26,11 +43,9 @@ const PORT = 26101;
 async function install(sdbDir, wgtPath, host, year) {
 	const sdb = getSdbBinary(sdbDir);
 
-	await confirmDevModeEnabled();
-
 	console.log('Installation started');
 
-	await execAndConfirm(`${sdb} connect ${host}`, 'connected', 'The device was connected');
+	await connect(sdbDir, host);
 
 	if (!host && !year) {
 		throw new Error('At least one of device host or year is required to install application');
@@ -62,35 +77,13 @@ async function install(sdbDir, wgtPath, host, year) {
 async function launch(sdbDir, applicationId, host) {
 	const sdb = getSdbBinary(sdbDir);
 
-	await execAndConfirm(
-		`${sdb} connect ${host}`,
-		'connected',
-		'The device was connected'
-	);
+	await connect(sdbDir, host);
 
 	await execAndConfirm(
 		`${sdb} -s ${host}:${PORT} shell 0 debug ${applicationId} 300`,
 		'launch',
 		'The app was launched'
 	);
-}
-
-
-/**
- * @return {Promise}
- */
-async function confirmDevModeEnabled() {
-	return new Promise((resolve) => {
-		const readlineInterface = readline.createInterface({
-			input: process.stdin,
-			output: process.stdout
-		});
-
-		readlineInterface.question('Log in DevMode and press enter to continue', () => {
-			readlineInterface.close();
-			resolve();
-		});
-	});
 }
 
 
@@ -103,12 +96,14 @@ async function resolveUploadPath(deviceHost, deviceYear) {
 	const LTE_2016_UPLOAD_PATH = '/opt/usr/apps/tmp';
 	const GTE_2017_UPLOAD_PATH = '/home/owner/share/tmp/sdk_tools/tmp';
 
+	const getPath = (year) => year >= 2017 ? GTE_2017_UPLOAD_PATH : LTE_2016_UPLOAD_PATH;
+
 	if (deviceYear) {
 		if (deviceYear < 2015) {
 			throw new Error('Device year should be 2015+');
 		}
 
-		return deviceYear >= 2017 ? GTE_2017_UPLOAD_PATH : LTE_2016_UPLOAD_PATH;
+		return getPath(deviceYear);
 	}
 
 	return new Promise((resolve, reject) => {
@@ -137,7 +132,7 @@ async function resolveUploadPath(deviceHost, deviceYear) {
 			clearTimeout(lookupTimeout);
 
 			if (resolvedYear) {
-				resolve(resolvedYear >= 2017 ? GTE_2017_UPLOAD_PATH : LTE_2016_UPLOAD_PATH);
+				resolve(getPath(resolvedYear));
 			} else {
 				reject('Can\'t resolve device year automatically, you must pass year command (see help)');
 			}
