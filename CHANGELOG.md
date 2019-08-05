@@ -1,3 +1,11 @@
+# 2.1.1 (05.08.2019)
+
+## Features
+* Improved video loading performance when starting playback from a specific position.
+
+## Fixes
+* Fixed full screen behavior on 2019 models.
+
 # 2.1.0 (23.07.2019)
 
 ## Features
