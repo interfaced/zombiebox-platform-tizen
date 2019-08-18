@@ -8,10 +8,10 @@ const msf = {};
  */
 msf.MSF = class {
 	/**
-	 * @param {?function(?Error, ?Array<msf.Service>)=} opt_callback
+	 * @param {?function(?Error, ?Array<msf.Service>)=} callback
 	 * @return {msf.Search}
 	 */
-	search(opt_callback) {}
+	search(callback) {}
 
 	/**
 	 * @param {function(?Error, ?msf.Service)} callback
@@ -125,9 +125,9 @@ msf.Channel = class extends msf.EventEmitter {
 	 * @param {string} event
 	 * @param {*} message
 	 * @param {string|Array<string>} target
-	 * @param {ArrayBuffer=} opt_payload
+	 * @param {ArrayBuffer=} payload
 	 */
-	publish(event, message, target, opt_payload) {}
+	publish(event, message, target, payload) {}
 
 	/**
 	 * @param {boolean} value

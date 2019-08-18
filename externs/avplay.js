@@ -1,7 +1,7 @@
 /**
  * Privilege: http://developer.samsung.com/privilege/avplay
  * @see http://www.samsungdforum.com/TizenApiGuide/?FolderName=tizen3001&FileName=index.html
- * @constructor
+ * @class
  */
 let AVPlay = function() {};
 
@@ -66,10 +66,10 @@ AVPlay.prototype.prepare = function() {};
  *  with error type NotSupportedError, if this feature is not supported.
  *  with error type InvalidValuesError, if any of the input parameters contain an invalid value.
  *  with error type UnknownError in any other error case.
- * @param {function()=} opt_successCallback
- * @param {function(*)=} opt_errorCallback
+ * @param {function()=} successCallback
+ * @param {function(*)=} errorCallback
  */
-AVPlay.prototype.prepareAsync = function(opt_successCallback, opt_errorCallback) {};
+AVPlay.prototype.prepareAsync = function(successCallback, errorCallback) {};
 
 
 /**
@@ -144,10 +144,10 @@ AVPlay.prototype.play = function() {};
  *  with error type InvalidValuesError, if any of the input parameters contain an invalid value.
  *  with error type UnknownError in any other error case.
  * @param {number} milliseconds
- * @param {function()=} opt_successCallback
- * @param {function()=} opt_errorCallback
+ * @param {function()=} successCallback
+ * @param {function()=} errorCallback
  */
-AVPlay.prototype.seekTo = function(milliseconds, opt_successCallback, opt_errorCallback) {};
+AVPlay.prototype.seekTo = function(milliseconds, successCallback, errorCallback) {};
 
 
 /**
@@ -230,18 +230,18 @@ AVPlay.prototype.pause = function() {};
  *  with error type InvalidValuesError, if any of the input parameters contain an invalid value.
  *  with error type UnknownError in any other error case.
  * @param {number} milliseconds
- * @param {function()=} opt_successCallback
- * @param {function()=} opt_errorCallback
+ * @param {function()=} successCallback
+ * @param {function()=} errorCallback
  */
-AVPlay.prototype.jumpForward = function(milliseconds, opt_successCallback, opt_errorCallback) {};
+AVPlay.prototype.jumpForward = function(milliseconds, successCallback, errorCallback) {};
 
 
 /**
  * @param {number} milliseconds
- * @param {function()=} opt_successCallback
- * @param {function()=} opt_errorCallback
+ * @param {function()=} successCallback
+ * @param {function()=} errorCallback
  */
-AVPlay.prototype.jumpBackward = function(milliseconds, opt_successCallback, opt_errorCallback) {};
+AVPlay.prototype.jumpBackward = function(milliseconds, successCallback, errorCallback) {};
 
 
 /**
@@ -630,11 +630,11 @@ AVPlay.prototype.suspend = function() {};
 
 
 /**
- * @param {string=} opt_url
- * @param {number=} opt_resumePosition
- * @param {boolean=} opt_prepare
+ * @param {string=} url
+ * @param {number=} resumePosition
+ * @param {boolean=} prepare
  */
-AVPlay.prototype.restore = function(opt_url, opt_resumePosition, opt_prepare) {};
+AVPlay.prototype.restore = function(url, resumePosition, prepare) {};
 
 
 /**

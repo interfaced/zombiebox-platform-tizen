@@ -48,7 +48,7 @@ class Tizen extends AbstractPlatform {
 					.positional('year', {
 						describe: 'Device year'
 					}),
-				async({device, year}) => {
+				async ({device, year}) => {
 					const config = app.getConfig();
 					const pathHelper = app.getPathHelper();
 					const {sdbDir} = config.platforms.tizen;
@@ -82,7 +82,7 @@ class Tizen extends AbstractPlatform {
 					.positional('device', {
 						describe: 'Device name or IP address'
 					}),
-				async({device}) => {
+				async ({device}) => {
 					const config = app.getConfig();
 
 					const configXml = await this._resolveConfigXmlPath(app)
@@ -201,7 +201,7 @@ class Tizen extends AbstractPlatform {
 
 			await fse.rename(`${distDir}/${wgtFileName}`, `${distDir}/${generatedWgtName}.wgt`);
 		} else {
-			throw `Can't find .wgt file in "${distDir}"`;
+			throw new Error(`Can't find .wgt file in "${distDir}"`);
 		}
 	}
 }

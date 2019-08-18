@@ -1,57 +1,35 @@
-const {join, dirname} = require('path');
-
-function resolveModulePath(packageName) {
-	const packageInfoPath = require.resolve(`${packageName}/package.json`);
-	return join(dirname(packageInfoPath), require(packageInfoPath).module);
-}
-
 module.exports = {
 	extends: 'interfaced',
+	rules: {
+		'prefer-promise-reject-errors': ['error', {allowEmptyReject: true}],
+		'jsdoc/check-tag-names': ["error", {
+			definedTags: ['dict']
+		}]
+	},
 	overrides: [
 		{
 			files: ['lib/**/*.js'],
+			extends: 'interfaced/esm',
 			settings: {
-				'import/resolver': {
-					alias: [
-						['zb', resolveModulePath('zombiebox')],
-						['i18n', join(__dirname, 'lib')]
-					]
-				}
-			},
-			...require('eslint-config-interfaced/overrides/esm')
-		},
-		{
-			files: ['lib/**/*.js'],
-			rules: {
-				'import/no-unresolved': ['error', {ignore: ['^generated/']}],
-			},
+				'import/resolver': 'zombiebox'
+			}
 		},
 		{
 			files: ['externs/*.js'],
-			...require('eslint-config-interfaced/overrides/externs')
+			extends: 'interfaced/externs',
+			rules: {
+				'jsdoc/require-returns-check': 'off'
+			}
 		},
 		{
 			files: ['docs/examples/*.js', 'index.js', 'cli/*.js'],
-			...require('eslint-config-interfaced/overrides/node')
+			extends: 'interfaced/node'
 		},
 		{
 			files: ['docs/examples/*.js'],
 			globals: {
 				tizen: 'readonly',
 				webapis: 'readonly'
-			}
-		},
-		{
-			files: ['docs/examples/*.js', 'index.js', 'cli/*.js'],
-			rules: {
-				'node/no-unsupported-features/es-builtins': ["error", { "version": ">=8.9" }],
-				'node/no-unsupported-features/es-syntax': ["error", { "version": ">=8.9" }],
-				'node/no-unsupported-features/node-builtins': ["error", { "version": ">=8.9" }],
-				'node/no-deprecated-api': ['error', {
-					'ignoreModuleItems': [
-						'url.parse' // TODO: remove once node 8 support is dropped and the deprecation is handled
-					]
-				}]
 			}
 		},
 		{

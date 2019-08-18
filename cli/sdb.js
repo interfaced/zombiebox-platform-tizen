@@ -134,7 +134,7 @@ async function resolveUploadPath(deviceHost, deviceYear) {
 			if (resolvedYear) {
 				resolve(getPath(resolvedYear));
 			} else {
-				reject('Can\'t resolve device year automatically, you must pass year command (see help)');
+				reject(new Error('Can\'t resolve device year automatically, you must pass year command (see help)'));
 			}
 		});
 
@@ -160,8 +160,8 @@ async function fetchDeviceYear(descriptionUrl) {
 			response.on('data', (d) => {
 				xml += d;
 			});
-			response.on('end', () => {
-				const data = parseXml(xml);
+			response.on('end', async () => {
+				const data = await parseXml(xml);
 
 				const productData = data.root.device[0]['sec:ProductCap'][0];
 				const yearMatch = /Y(\d*)/.exec(productData);

@@ -2,7 +2,7 @@
  * This interface provides the relative alarm, which occurs at a fixed interval in future.
  * This alarm triggers after a duration mentioned in delay attribute from the moment the alarm is added.
  * If a period is provided, the alarm keeps triggering for the given interval.
- * @constructor
+ * @class
  * @return {AlarmRelative}
  */
 function AlarmRelative() {}
@@ -11,21 +11,21 @@ function AlarmRelative() {}
  * This interface provides an absolute alarm, which triggers at a specified absolute date.
  * If a period is provided, the alarm keeps triggering for the given interval. If the daysOfTheWeek array
  * is not empty, the alarm triggers every week, for the given days, at the time defined by date attribute.
- * @constructor
+ * @class
  * @return {AlarmAbsolute}
  */
 function AlarmAbsolute() {}
 
 /**
  * This interface is an abstract interface for alarm types.
- * @constructor
+ * @class
  * @return {Alarm}
  */
 function Alarm() {}
 
 /**
  * This interface provides methods to manage alarms.
- * @constructor
+ * @class
  * @return {AlarmManager}
  */
 function AlarmManager() {}
@@ -46,7 +46,7 @@ AlarmRelative.prototype.period;
 /**
  * Returns duration in seconds before the next alarm is triggered.
  * If the alarm has expired, this method returns null.
- * @memberOf AlarmRelative
+ * @memberof AlarmRelative
  * @return {number}
  */
 AlarmRelative.prototype.getRemainingSeconds = function() {};
@@ -77,7 +77,7 @@ AlarmAbsolute.prototype.daysOfTheWeek;
 /**
  * Returns the date / time of the next alarm trigger.
  * If the alarm has expired, this method returns null. The returned date is precise to the second.
- * @memberOf AlarmAbsolute
+ * @memberof AlarmAbsolute
  * @return {Date}
  */
 AlarmAbsolute.prototype.getNextScheduledDate = function() {};
@@ -120,7 +120,7 @@ AlarmManager.PERIOD_WEEK;
  * @param {Alarm} alarm
  * @param {string} applicationId
  * @param {ApplicationControl} appControl
- * @memberOf AlarmManager
+ * @memberof AlarmManager
  * @return {void}
  */
 AlarmManager.prototype.add = function(alarm, applicationId, appControl) {};
@@ -129,7 +129,7 @@ AlarmManager.prototype.add = function(alarm, applicationId, appControl) {};
  * Removes an alarm from the storage.
  * If an alarm goes off, it will be removed from the storage automatically.
  * @param {string} id
- * @memberOf AlarmManager
+ * @memberof AlarmManager
  * @return {void}
  */
 AlarmManager.prototype.remove = function(id) {};
@@ -137,7 +137,7 @@ AlarmManager.prototype.remove = function(id) {};
 /**
  * Removes all alarms added by an application.
  * Because each application has its own alarm storage, this method removes alarms only added by the calling application.
- * @memberOf AlarmManager
+ * @memberof AlarmManager
  * @return {void}
  */
 AlarmManager.prototype.removeAll = function() {};
@@ -146,7 +146,7 @@ AlarmManager.prototype.removeAll = function() {};
  * Returns an alarm as per the specified identifier.
  *
  * @param {string} id
- * @memberOf AlarmManager
+ * @memberof AlarmManager
  * @return {Alarm}
  */
 AlarmManager.prototype.get = function(id) {};
@@ -154,7 +154,7 @@ AlarmManager.prototype.get = function(id) {};
 /**
  * Retrieves all alarms in an application storage.
  * Alarms that have already been triggered are removed automatically from the storage.
- * @memberOf AlarmManager
+ * @memberof AlarmManager
  * @return {Array}
  */
 AlarmManager.prototype.getAll = function() {};
@@ -162,14 +162,14 @@ AlarmManager.prototype.getAll = function() {};
 /**
  * This interface defines the current application's information and the basic operations (such as exit or hide)
  * for the current application .
- * @constructor
+ * @class
  * @return {Application}
  */
 function Application() {}
 
 /**
  * This interface defines the certificate information of an installed application.
- * @constructor
+ * @class
  * @return {ApplicationCertificate}
  */
 function ApplicationCertificate() {}
@@ -211,7 +211,7 @@ let ApplicationControlDataArrayReplyCallback;
 
 /**
  * This interface defines a key/value pair used to pass data between applications through the interface.
- * @constructor
+ * @class
  * @param {string} key
  * @param {Array<string>} value
  * @return {ApplicationControlData}
@@ -220,7 +220,7 @@ function ApplicationControlData(key, value) {}
 
 /**
  * This interface defines the general information available to an installed application.
- * @constructor
+ * @class
  * @return {ApplicationInformation}
  */
 function ApplicationInformation() {}
@@ -237,14 +237,14 @@ let ApplicationContextArraySuccessCallback;
 
 /**
  * This interface defines the information available about a running application.
- * @constructor
+ * @class
  * @return {ApplicationContext}
  */
 function ApplicationContext() {}
 
 /**
  * This section defines the application manager interface.
- * @constructor
+ * @class
  * @return {ApplicationManager}
  */
 function ApplicationManager() {}
@@ -254,7 +254,7 @@ function ApplicationManager() {}
  * applications and is passed to launch other applications. If the system gets the application control request,
  * it finds the corresponding application to be launched with the delivered application control and launches
  * the selected application.
- * @constructor
+ * @class
  * @param {?string} operation
  * @param {?string} uri
  * @param {?string} mime
@@ -279,7 +279,7 @@ let ApplicationInformationEventCallback;
 
 /**
  * This interface defines the meta data of an installed application.
- * @constructor
+ * @class
  * @return {ApplicationMetaData}
  */
 function ApplicationMetaData() {}
@@ -289,7 +289,7 @@ function ApplicationMetaData() {}
  * to launch other applications. The newly launched application can get the requested application control through
  * method, and send the results to the calling application through the method after performing the required action
  * requested the calling application.
- * @constructor
+ * @class
  * @return {RequestedApplicationControl}
  */
 function RequestedApplicationControl() {}
@@ -308,14 +308,14 @@ Application.prototype.contextId;
 
 /**
  * Exits the current application.
- * @memberOf Application
+ * @memberof Application
  * @return {void}
  */
 Application.prototype.exit = function() {};
 
 /**
  * Hides the current application.
- * @memberOf Application
+ * @memberof Application
  * @return {void}
  */
 Application.prototype.hide = function() {};
@@ -330,7 +330,7 @@ Application.prototype.hide = function() {};
  * application's request. In all of these cases, the application is
  * responsible for checking the contents of the application control and responding
  * appropriately when it is launched.
- * @memberOf Application
+ * @memberof Application
  * @return {RequestedApplicationControl}
  */
 Application.prototype.getRequestedAppControl = function() {};
@@ -428,7 +428,7 @@ ApplicationContext.prototype.appId;
 /**
  * Gets the object defining the current application.
  *
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {Application}
  */
 ApplicationManager.prototype.getCurrentApplication = function() {};
@@ -443,7 +443,7 @@ ApplicationManager.prototype.getCurrentApplication = function() {};
  * @param {string} contextId
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.kill = function(contextId, successCallback, errorCallback) {};
@@ -457,7 +457,7 @@ ApplicationManager.prototype.kill = function(contextId, successCallback, errorCa
  * @param {string} id
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.launch = function(id, successCallback, errorCallback) {};
@@ -486,7 +486,7 @@ ApplicationManager.prototype.launch = function(id, successCallback, errorCallbac
  * @param {SuccessCallback=} successCallback
  * @param {ErrorCallback=} errorCallback
  * @param {ApplicationControlDataArrayReplyCallback=} replyCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.launchAppControl = function(
@@ -506,7 +506,7 @@ ApplicationManager.prototype.launchAppControl = function(
  * @param {ApplicationControl} appControl
  * @param {FindAppControlSuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.findAppControl = function(appControl, successCallback, errorCallback) {};
@@ -518,7 +518,7 @@ ApplicationManager.prototype.findAppControl = function(appControl, successCallba
  * UnknownError - If an unknown error occurs.
  * @param {ApplicationContextArraySuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.getAppsContext = function(successCallback, errorCallback) {};
@@ -528,7 +528,7 @@ ApplicationManager.prototype.getAppsContext = function(successCallback, errorCal
  * the method returns the application context of the current application. The list of running applications and their
  * application IDs is obtained with.
  * @param {string} contextId
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {ApplicationContext}
  */
 ApplicationManager.prototype.getAppContext = function(contextId) {};
@@ -540,7 +540,7 @@ ApplicationManager.prototype.getAppContext = function(contextId) {};
  * UnknownError - If an unknown error occurs.
  * @param {ApplicationInformationArraySuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.getAppsInfo = function(successCallback, errorCallback) {};
@@ -550,7 +550,7 @@ ApplicationManager.prototype.getAppsInfo = function(successCallback, errorCallba
  * If the ID is set to null or not set at all, it returns application information for the current application.
  * The list of installed applications and their application IDs is obtained with getAppsInfo().
  * @param {string} id
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {ApplicationInformation}
  */
 ApplicationManager.prototype.getAppInfo = function(id) {};
@@ -569,7 +569,7 @@ ApplicationManager.prototype.getAppInfo = function(id) {};
  *  DISTRIBUTOR2_INTERMEDIATE - Distributor2 Intermediate Certificate
  *  DISTRIBUTOR2_SIGNER - Distributor2 Signer Certificate
  * @param {string} id
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {Array}
  */
 ApplicationManager.prototype.getAppCerts = function(id) {};
@@ -579,7 +579,7 @@ ApplicationManager.prototype.getAppCerts = function(id) {};
  * The shared directory is used to export data to other applications.
  * If the ID is set to null or not set at all, it returns shared directory URI for the current application.
  * @param {string} id
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {string}
  */
 ApplicationManager.prototype.getAppSharedURI = function(id) {};
@@ -588,7 +588,7 @@ ApplicationManager.prototype.getAppSharedURI = function(id) {};
  * Gets application meta data array for a specified application ID.
  * If the ID is set to null or not set at all, it returns application meta data array for the current application.
  * @param {string} id
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {Array}
  */
 ApplicationManager.prototype.getAppMetaData = function(id) {};
@@ -606,7 +606,7 @@ ApplicationManager.prototype.getAppMetaData = function(id) {};
  * The change detection must continue until the removeAppInfoEventListener() method is called
  * with the corresponding listener identifier.
  * @param {ApplicationInformationEventCallback} eventCallback
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {number}
  */
 ApplicationManager.prototype.addAppInfoEventListener = function(eventCallback) {};
@@ -614,7 +614,7 @@ ApplicationManager.prototype.addAppInfoEventListener = function(eventCallback) {
 /**
  * Removes the listener to stop receiving notifications for changes on the list of installed applications on a device.
  * @param {number} watchId
- * @memberOf ApplicationManager
+ * @memberof ApplicationManager
  * @return {void}
  */
 ApplicationManager.prototype.removeAppInfoEventListener = function(watchId) {};
@@ -677,21 +677,21 @@ RequestedApplicationControl.prototype.callerAppId;
 /**
  * Sends the results to the caller application.
  * @param {Array} data
- * @memberOf RequestedApplicationControl
+ * @memberof RequestedApplicationControl
  * @return {void}
  */
 RequestedApplicationControl.prototype.replyResult = function(data) {};
 
 /**
  * Notifies the calling application that the application failed to perform the requested action.
- * @memberOf RequestedApplicationControl
+ * @memberof RequestedApplicationControl
  * @return {void}
  */
 RequestedApplicationControl.prototype.replyFailure = function() {};
 
 /**
  * This interface implements the object.
- * @constructor
+ * @class
  * @return {BookmarkFolder}
  */
 function BookmarkFolder() {}
@@ -699,14 +699,14 @@ function BookmarkFolder() {}
 /**
  * This interface provides access to the bookmark folder and bookmark item.
  * It provides access to the API functionalities through the tizen.bookmark interface.
- * @constructor
+ * @class
  * @return {BookmarkManager}
  */
 function BookmarkManager() {}
 
 /**
  * This interface implements the object.
- * @constructor
+ * @class
  * @return {BookmarkItem}
  */
 function BookmarkItem() {}
@@ -733,7 +733,7 @@ BookmarkFolder.prototype.title;
  * In this case, the return will contain bookmarks under the root bookmark folder.
  * @param {BookmarkFolder} parentFolder
  * @param {boolean} recursive
- * @memberOf BookmarkManager
+ * @memberof BookmarkManager
  * @return {Array}
  */
 BookmarkManager.prototype.get = function(parentFolder, recursive) {};
@@ -750,7 +750,7 @@ let Bookmark;
  * In this case, the bookmark is added under the root bookmark folder.
  * @param {Bookmark} bookmark
  * @param {BookmarkFolder} parentFolder
- * @memberOf BookmarkManager
+ * @memberof BookmarkManager
  * @return {void}
  */
 BookmarkManager.prototype.add = function(bookmark, parentFolder) {};
@@ -762,7 +762,7 @@ BookmarkManager.prototype.add = function(bookmark, parentFolder) {};
  * as the default bookmark folder(The root bookmark folder).
  * In this case, all the bookmarks will be removed.
  * @param {Bookmark} bookmark
- * @memberOf BookmarkManager
+ * @memberof BookmarkManager
  * @return {void}
  */
 BookmarkManager.prototype.remove = function(bookmark) {};
@@ -797,14 +797,14 @@ let ContentScanSuccessCallback;
 
 /**
  * This interface provides lyrics for music.
- * @constructor
+ * @class
  * @return {AudioContentLyrics}
  */
 function AudioContentLyrics() {}
 
 /**
  * This interface provides access to properties of a content.
- * @constructor
+ * @class
  * @return {Content}
  */
 function Content() {}
@@ -818,7 +818,7 @@ let ContentArraySuccessCallback;
 
 /**
  * This interface extends a basic object with image-specific attributes.
- * @constructor
+ * @class
  * @return {ImageContent}
  */
 function ImageContent() {}
@@ -839,21 +839,21 @@ let ContentChangeCallback;
 
 /**
  * This interface extends a basic object with audio-specific attributes.
- * @constructor
+ * @class
  * @return {AudioContent}
  */
 function AudioContent() {}
 
 /**
  * This interface extends a basic object with video-specific attributes.
- * @constructor
+ * @class
  * @return {VideoContent}
  */
 function VideoContent() {}
 
 /**
  * This interface provides operations to retrieve and manipulate contents.
- * @constructor
+ * @class
  * @return {ContentManager}
  */
 function ContentManager() {}
@@ -867,7 +867,7 @@ let ContentDirectoryArraySuccessCallback;
 
 /**
  * This interface that provides access to properties of a content directory.
- * @constructor
+ * @class
  * @return {ContentDirectory}
  */
 function ContentDirectory() {}
@@ -1122,7 +1122,7 @@ VideoContent.prototype.height;
  * When an application has changed some attributes of a content, this method allows
  * writing it back to the content database.
  * @param {Content} content
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.update = function(content) {};
@@ -1137,7 +1137,7 @@ ContentManager.prototype.update = function(content) {};
  * @param {Array} contents
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.updateBatch = function(contents, successCallback, errorCallback) {};
@@ -1150,7 +1150,7 @@ ContentManager.prototype.updateBatch = function(contents, successCallback, error
  * UnknownError: In any other error case.
  * @param {ContentDirectoryArraySuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.getDirectories = function(successCallback, errorCallback) {};
@@ -1170,7 +1170,7 @@ ContentManager.prototype.getDirectories = function(successCallback, errorCallbac
  * @param {SortMode} sortMode
  * @param {number} count
  * @param {number} offset
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.find = function(
@@ -1190,7 +1190,7 @@ ContentManager.prototype.find = function(
  * @param {string} contentURI
  * @param {ContentScanSuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.scanFile2 = function(contentURI, successCallback, errorCallback) {};
@@ -1198,14 +1198,14 @@ ContentManager.prototype.scanFile2 = function(contentURI, successCallback, error
 /**
  * Sets a listener to receive notifications about content changes.
  * @param {ContentChangeCallback} changeCallback
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.setChangeListener = function(changeCallback) {};
 
 /**
  * Unsets the listener to unsubscribes from receiving notification for any content changes.
- * @memberOf ContentManager
+ * @memberof ContentManager
  * @return {void}
  */
 ContentManager.prototype.unsetChangeListener = function() {};
@@ -1250,14 +1250,14 @@ ContentDirectory.prototype.modifiedDate;
 
 /**
  * This interface handles requests for downloading. Each step of download operation will be informed through callbacks.
- * @constructor
+ * @class
  * @return {DownloadManager}
  */
 function DownloadManager() {}
 
 /**
  * This interface defines the download request object.
- * @constructor
+ * @class
  * @return {DownloadRequest}
  */
 function DownloadRequest() {}
@@ -1284,7 +1284,7 @@ let DownloadCallback;
  * Starts a download operation with the specified URL information.
  * @param {DownloadRequest} downloadRequest
  * @param {DownloadCallback} downloadCallback
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {number}
  */
 DownloadManager.prototype.start = function(downloadRequest, downloadCallback) {};
@@ -1292,7 +1292,7 @@ DownloadManager.prototype.start = function(downloadRequest, downloadCallback) {}
 /**
  * Cancels an ongoing download operation that is specified by the parameter.
  * @param {number} downloadId
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {void}
  */
 DownloadManager.prototype.cancel = function(downloadId) {};
@@ -1301,7 +1301,7 @@ DownloadManager.prototype.cancel = function(downloadId) {};
  * Pauses an ongoing download operation that is specified by the parameter. The paused download operation can be
  * resumed later by the method.
  * @param {number} downloadId
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {void}
  */
 DownloadManager.prototype.pause = function(downloadId) {};
@@ -1309,7 +1309,7 @@ DownloadManager.prototype.pause = function(downloadId) {};
 /**
  * Resumes a paused download operation that is specified by the parameter.
  * @param {number} downloadId
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {void}
  */
 DownloadManager.prototype.resume = function(downloadId) {};
@@ -1329,7 +1329,7 @@ let DownloadState = {
 /**
  * Gets the download state of an operation synchronously with the specified ID.
  * @param {number} downloadId
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {DownloadState}
  */
 DownloadManager.prototype.getState = function(downloadId) {};
@@ -1337,7 +1337,7 @@ DownloadManager.prototype.getState = function(downloadId) {};
 /**
  * Gets the DownloadRequest object from a given id.
  * @param {number} downloadId
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {DownloadRequest}
  */
 DownloadManager.prototype.getDownloadRequest = function(downloadId) {};
@@ -1345,7 +1345,7 @@ DownloadManager.prototype.getDownloadRequest = function(downloadId) {};
 /**
  * Gets the MIME type of the downloaded file.
  * @param {number} downloadId
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {string}
  */
 DownloadManager.prototype.getMIMEType = function(downloadId) {};
@@ -1355,7 +1355,7 @@ DownloadManager.prototype.getMIMEType = function(downloadId) {};
  * of download operation using the saved id.
  * @param {number} downloadId
  * @param {DownloadCallback} downloadCallback
- * @memberOf DownloadManager
+ * @memberof DownloadManager
  * @return {void}
  */
 DownloadManager.prototype.setListener = function(downloadId, downloadCallback) {};
@@ -1434,7 +1434,7 @@ let FileSystemStorageSuccessCallback;
  * This manager interface exposes the Filesystem base API, and provides functionalities, such
  * as determining root and default locations, resolving a given location into a file handle, and registering
  * filesystem listeners for filesystem events.
- * @constructor
+ * @class
  * @return {FileSystemManager}
  */
 function FileSystemManager() {}
@@ -1449,7 +1449,7 @@ function FileSystemManager() {}
  * to be granted through the initial resolve() method or through the openStream() method of the File interface.
  * Therefore, all actions performed on a successfully resolved File and FileStream are expected to succeed.
  * This avoids successive asynchronous calls and may potentially increase application for a user.
- * @constructor
+ * @class
  * @return {FileStream}
  */
 function FileStream() {}
@@ -1476,7 +1476,7 @@ let FileSuccessCallback;
  * such as reading and writing.
  * A file handle representing a directory can be used for listing all
  * files and directories rooted as the file handle location.
- * @constructor
+ * @class
  * @return {File}
  */
 function File2() {}
@@ -1485,7 +1485,7 @@ function File2() {}
  * This interface gives additional information about a storage, such as if the device is mounted,
  * if it's a removable drive or not, or the device's name.
  * To retrieve the mount point, the resolve() method should be used using the label as argument.
- * @constructor
+ * @class
  * @return {FileSystemStorage}
  */
 function FileSystemStorage() {}
@@ -1572,7 +1572,7 @@ let FileMode = {
  * @param {FileSuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
  * @param {FileMode} mode
- * @memberOf FileSystemManager
+ * @memberof FileSystemManager
  * @return {void}
  */
 FileSystemManager.prototype.resolve = function(location, onsuccess, onerror, mode) {};
@@ -1588,7 +1588,7 @@ FileSystemManager.prototype.resolve = function(location, onsuccess, onerror, mod
  * @param {string} label
  * @param {FileSystemStorageSuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf FileSystemManager
+ * @memberof FileSystemManager
  * @return {void}
  */
 FileSystemManager.prototype.getStorage = function(label, onsuccess, onerror) {};
@@ -1606,7 +1606,7 @@ FileSystemManager.prototype.getStorage = function(label, onsuccess, onerror) {};
  *  UnknownError - If any other error occurs.
  * @param {FileSystemStorageArraySuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf FileSystemManager
+ * @memberof FileSystemManager
  * @return {void}
  */
 FileSystemManager.prototype.listStorages = function(onsuccess, onerror) {};
@@ -1621,7 +1621,7 @@ FileSystemManager.prototype.listStorages = function(onsuccess, onerror) {};
  * the corresponding subscription identifier.
  * @param {FileSystemStorageSuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf FileSystemManager
+ * @memberof FileSystemManager
  * @return {number}
  */
 FileSystemManager.prototype.addStorageStateChangeListener = function(onsuccess, onerror) {};
@@ -1631,7 +1631,7 @@ FileSystemManager.prototype.addStorageStateChangeListener = function(onsuccess, 
  * If the watchId argument is valid and corresponds to a subscription already in place, the watch process will be
  * stopped and no further callbacks will be invoked.
  * @param {number} watchId
- * @memberOf FileSystemManager
+ * @memberof FileSystemManager
  * @return {void}
  */
 FileSystemManager.prototype.removeStorageStateChangeListener = function(watchId) {};
@@ -1668,7 +1668,7 @@ FileStream.prototype.bytesAvailable;
  * Closes this FileStream.
  * Flushes any pending buffered writes and closes the File2. Always succeeds.
  * Note that pending writes might not succeed.
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {void}
  */
 FileStream.prototype.close = function() {};
@@ -1677,7 +1677,7 @@ FileStream.prototype.close = function() {};
  * Reads the specified number of characters from the position of the file pointer in a FileStream and returns
  * the characters as a string. The resulting string length might be shorter than if EOF is .
  * @param {number} charCount
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {string}
  */
 FileStream.prototype.read = function(charCount) {};
@@ -1685,7 +1685,7 @@ FileStream.prototype.read = function(charCount) {};
 /**
  * Reads the specified number of bytes from a FileStream.
  * @param {number} byteCount
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {Array}
  */
 FileStream.prototype.readBytes = function(byteCount) {};
@@ -1693,7 +1693,7 @@ FileStream.prototype.readBytes = function(byteCount) {};
 /**
  * Reads the specified number of bytes from this FileStream, encoding the result in base64.
  * @param {number} byteCount
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {string}
  */
 FileStream.prototype.readBase64 = function(byteCount) {};
@@ -1701,7 +1701,7 @@ FileStream.prototype.readBase64 = function(byteCount) {};
 /**
  * Writes the specified DOMstring to a FileStream.
  * @param {string} stringData
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {void}
  */
 FileStream.prototype.write = function(stringData) {};
@@ -1709,7 +1709,7 @@ FileStream.prototype.write = function(stringData) {};
 /**
  * Writes the specified bytes to this FileStream.
  * @param {Array} byteData
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {void}
  */
 FileStream.prototype.writeBytes = function(byteData) {};
@@ -1717,7 +1717,7 @@ FileStream.prototype.writeBytes = function(byteData) {};
 /**
  * Writes the result to this FileStream after converting the specified base64 DOMstring to bytes.
  * @param {string} base64Data
- * @memberOf FileStream
+ * @memberof FileStream
  * @return {void}
  */
 FileStream.prototype.writeBase64 = function(base64Data) {};
@@ -1840,7 +1840,7 @@ File2.prototype.length;
  * (such as wgt-package, wgt-private, wgt-private-tmp). The generated URI must be unique for that file and for
  * the widget making the request (such as including some derived from the widget ID in the URI).
  * These URIs must not be accessible to other widgets, apart from the one invoking this method.
- * @memberOf File
+ * @memberof File
  * @return {string}
  */
 File2.prototype.toURI = function() {};
@@ -1874,7 +1874,7 @@ let FileFilter;
  * @param {FileArraySuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
  * @param {FileFilter} filter
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.listFiles = function(onsuccess, onerror, filter) {};
@@ -1894,7 +1894,7 @@ File2.prototype.listFiles = function(onsuccess, onerror, filter) {};
  * @param {FileStreamSuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
  * @param {string} encoding
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.openStream = function(mode, onsuccess, onerror, encoding) {};
@@ -1911,7 +1911,7 @@ File2.prototype.openStream = function(mode, onsuccess, onerror, encoding) {};
  * @param {FilestringSuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
  * @param {string} encoding
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.readAsText = function(onsuccess, onerror, encoding) {};
@@ -1936,7 +1936,7 @@ File2.prototype.readAsText = function(onsuccess, onerror, encoding) {};
  * @param {boolean} overwrite
  * @param {SuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.copyTo = function(originFilePath, destinationFilePath, overwrite, onsuccess, onerror) {};
@@ -1962,7 +1962,7 @@ File2.prototype.copyTo = function(originFilePath, destinationFilePath, overwrite
  * @param {boolean} overwrite
  * @param {SuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.moveTo = function(originFilePath, destinationFilePath, overwrite, onsuccess, onerror) {};
@@ -1977,7 +1977,7 @@ File2.prototype.moveTo = function(originFilePath, destinationFilePath, overwrite
  * If the directory is successfully created, it will be returned.
  * In case the directory cannot be created, an error must be thrown with the appropriate error type.
  * @param {string} dirPath
- * @memberOf File
+ * @memberof File
  * @return {File}
  */
 File2.prototype.createDirectory = function(dirPath) {};
@@ -1990,7 +1990,7 @@ File2.prototype.createDirectory = function(dirPath) {};
  * If the file is successfully created, a file handler must be returned by this method.
  * In case the file cannot be created, an error must be thrown with the appropriate error type.
  * @param {string} relativeFilePath
- * @memberOf File
+ * @memberof File
  * @return {File}
  */
 File2.prototype.createFile2 = function(relativeFilePath) {};
@@ -2001,7 +2001,7 @@ File2.prototype.createFile2 = function(relativeFilePath) {};
  * The filePath is not allowed to contain the "." or ".." directories.
  * The encoding of file paths is <a href="http://www.ietf.org/rfc/rfc2279.txt">UTF-8</a>.
  * @param {string} filePath
- * @memberOf File
+ * @memberof File
  * @return {File}
  */
 File2.prototype.resolve = function(filePath) {};
@@ -2026,7 +2026,7 @@ File2.prototype.resolve = function(filePath) {};
  * @param {boolean} recursive
  * @param {SuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.deleteDirectory = function(directoryPath, recursive, onsuccess, onerror) {};
@@ -2043,7 +2043,7 @@ File2.prototype.deleteDirectory = function(directoryPath, recursive, onsuccess, 
  * @param {string} filePath
  * @param {SuccessCallback} onsuccess
  * @param {ErrorCallback} onerror
- * @memberOf File
+ * @memberof File
  * @return {void}
  */
 File2.prototype.deleteFile2 = function(filePath, onsuccess, onerror) {};
@@ -2108,14 +2108,14 @@ let PackageInformationEventCallback;
 
 /**
  * This interface defines the general information available to an installed package.
- * @constructor
+ * @class
  * @return {PackageInformation}
  */
 function PackageInformation() {}
 
 /**
  * This interface defines the package manager.
- * @constructor
+ * @class
  * @return {PackageManager}
  */
 function PackageManager() {}
@@ -2200,7 +2200,7 @@ PackageInformation.prototype.appIds;
  * @param {string} path
  * @param {PackageProgressCallback} progressCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf PackageManager
+ * @memberof PackageManager
  * @return {void}
  */
 PackageManager.prototype.install = function(path, progressCallback, errorCallback) {};
@@ -2215,7 +2215,7 @@ PackageManager.prototype.install = function(path, progressCallback, errorCallbac
  * @param {string} id
  * @param {PackageProgressCallback} progressCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf PackageManager
+ * @memberof PackageManager
  * @return {void}
  */
 PackageManager.prototype.uninstall = function(id, progressCallback, errorCallback) {};
@@ -2227,7 +2227,7 @@ PackageManager.prototype.uninstall = function(id, progressCallback, errorCallbac
  *  UnknownError - If any other platform error occurs.
  * @param {PackageInformationArraySuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf PackageManager
+ * @memberof PackageManager
  * @return {void}
  */
 PackageManager.prototype.getPackagesInfo = function(successCallback, errorCallback) {};
@@ -2237,7 +2237,7 @@ PackageManager.prototype.getPackagesInfo = function(successCallback, errorCallba
  * If the ID is set to null or not set at all, it returns package information of the current application.
  * The list of installed packages and their package IDs is obtained using getPackagesInfo().
  * @param {string} id
- * @memberOf PackageManager
+ * @memberof PackageManager
  * @return {PackageInformation}
  */
 PackageManager.prototype.getPackageInfo = function(id) {};
@@ -2248,84 +2248,84 @@ PackageManager.prototype.getPackageInfo = function(id) {};
  * removed or updated.
  * The callback lasts until unsetPackageInfoEventListener() method is called.
  * @param {PackageInformationEventCallback} eventCallback
- * @memberOf PackageManager
+ * @memberof PackageManager
  * @return {void}
  */
 PackageManager.prototype.setPackageInfoEventListener = function(eventCallback) {};
 
 /**
  * Unsets the listener to stop receiving package notifications.
- * @memberOf PackageManager
+ * @memberof PackageManager
  * @return {void}
  */
 PackageManager.prototype.unsetPackageInfoEventListener = function() {};
 
 /**
  * This property reflects the information of the device orientation in this system.
- * @constructor
+ * @class
  * @return {SystemInfoDeviceOrientation}
  */
 function SystemInfoDeviceOrientation() {}
 
 /**
  * This property reflects the locale information of the current device.
- * @constructor
+ * @class
  * @return {SystemInfoLocale}
  */
 function SystemInfoLocale() {}
 
 /**
  * This property reflects the video sources the device has.
- * @constructor
+ * @class
  * @return {SystemInfoVideoSource}
  */
 function SystemInfoVideoSource() {}
 
 /**
  * This property reflects the information of the current device.
- * @constructor
+ * @class
  * @return {SystemInfoBuild}
  */
 function SystemInfoBuild() {}
 
 /**
  * This property reflects the state of the CPUs available to this system.
- * @constructor
+ * @class
  * @return {SystemInfoCpu}
  */
 function SystemInfoCpu() {}
 
 /**
  * This property exposes the data storage devices connected to this system.
- * @constructor
+ * @class
  * @return {SystemInfoStorage}
  */
 function SystemInfoStorage() {}
 
 /**
  * SystemInfoDeviceCapability object.
- * @constructor
+ * @class
  * @return {SystemInfoDeviceCapability}
  */
 function SystemInfoDeviceCapability() {}
 
 /**
  * This property reflects the general state of the system's battery
- * @constructor
+ * @class
  * @return {SystemInfoBattery}
  */
 function SystemInfoBattery() {}
 
 /**
  * This property reflects the information of the Wi-Fi network in this system.
- * @constructor
+ * @class
  * @return {SystemInfoWifiNetwork}
  */
 function SystemInfoWifiNetwork() {}
 
 /**
  * This property reflects the peripheral information of the current device.
- * @constructor
+ * @class
  * @return {SystemInfoPeripheral}
  */
 function SystemInfoPeripheral() {}
@@ -2341,7 +2341,7 @@ let SystemInfoPropertySuccessCallback;
 
 /**
  * This property reflects the information of the Display.
- * @constructor
+ * @class
  * @return {SystemInfoDisplay}
  */
 function SystemInfoDisplay() {}
@@ -2350,35 +2350,35 @@ function SystemInfoDisplay() {}
  * This entry interface queries the information of a system.
  * This API offers methods for retrieving system information
  * and for subscribing notifications of system information changes.
- * @constructor
+ * @class
  * @return {SystemInfo}
  */
 function SystemInfo() {}
 
 /**
  * This property reflects the information of the SIM card information.
- * @constructor
+ * @class
  * @return {SystemInfoSIM}
  */
 function SystemInfoSIM() {}
 
 /**
  * This is a common abstract interface used by different types of system information objects.
- * @constructor
+ * @class
  * @return {SystemInfoProperty}
  */
 function SystemInfoProperty() {}
 
 /**
  * This property reflects the information of the Cellular network in this system.
- * @constructor
+ * @class
  * @return {SystemInfoCellularNetwork}
  */
 function SystemInfoCellularNetwork() {}
 
 /**
  * This property reflects the information of the data network in this system.
- * @constructor
+ * @class
  * @return {SystemInfoNetwork}
  */
 function SystemInfoNetwork() {}
@@ -2387,14 +2387,14 @@ function SystemInfoNetwork() {}
  * This property reflects each input source the current device has.
  * If there are 2 HDMI inputs on a device, Two SystemInfoVideoSourceInfo objects must be retreived
  * through SystemInfoVideoSource{type=HDMI, number=1}, {type=HDMI, number=2}
- * @constructor
+ * @class
  * @return {SystemInfoVideoSourceInfo}
  */
 function SystemInfoVideoSourceInfo() {}
 
 /**
  * This property exposes a single storage device connected to this system.
- * @constructor
+ * @class
  * @return {SystemInfoStorageUnit}
  */
 function SystemInfoStorageUnit() {}
@@ -2998,7 +2998,7 @@ SystemInfoDisplay.prototype.brightness;
 /**
  * Gets the capabilities of the device.
  * The function must synchronously acquire the capabilities of the device.
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {SystemInfoDeviceCapability}
  */
 SystemInfo.prototype.getCapabilities = function() {};
@@ -3229,28 +3229,28 @@ SystemInfo.prototype.getCapabilities = function() {};
  *      "http://tizen.org/system/duid" DOMstring
  * Indicates the unique identification(ID) of the device.
  * @param {string} key
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {*}
  */
 SystemInfo.prototype.getCapability = function(key) {};
 
 /**
  * Gets the version of the platform.
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {string}
  */
 SystemInfo.prototype.getPlatformVersion = function() {};
 
 /**
  * Gets the version of the Tizen Web API.
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {string}
  */
 SystemInfo.prototype.getWebApiVersion = function() {};
 
 /**
  * Gets the version of the Tizen Native API.
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {string}
  */
 SystemInfo.prototype.getNativeApiVersion = function() {};
@@ -3264,7 +3264,7 @@ SystemInfo.prototype.getNativeApiVersion = function() {};
  * @param {SystemInfoPropertyId} property
  * @param {SystemInfoPropertySuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {void}
  */
 SystemInfo.prototype.getPropertyValue = function(property, successCallback, errorCallback) {};
@@ -3315,7 +3315,7 @@ let SystemInfoPropertyId = {
  * @param {SystemInfoPropertyId} property
  * @param {SystemInfoPropertySuccessCallback} successCallback
  * @param {SystemInfoOptions} options
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {number}
  */
 SystemInfo.prototype.addPropertyValueChangeListener = function(property, successCallback, options) {};
@@ -3327,7 +3327,7 @@ SystemInfo.prototype.addPropertyValueChangeListener = function(property, success
  * callback is invoked. If the listenerId argument does not correspond to a valid subscription,
  * the method should return without any further action.
  * @param {number} listenerId
- * @memberOf SystemInfo
+ * @memberof SystemInfo
  * @return {void}
  */
 SystemInfo.prototype.removePropertyValueChangeListener = function(listenerId) {};
@@ -3552,7 +3552,7 @@ SystemInfoStorageUnit.prototype.isRemoveable;
  * This interface offers methods to manage date / time as well as timezones such as:
  * Get the current date / time using getCurrentDateTime().
  * Get timezones using getLocalTimezone() and getAvailableTimezones().
- * @constructor
+ * @class
  * @return {TimeUtil}
  */
 function TimeUtil() {}
@@ -3560,28 +3560,28 @@ function TimeUtil() {}
 /**
  * The TZDate object represents information regarding a given date / time in a predefined timezone.
  * If its date / time is exceed the platform limit, TZDate will be invalid.
- * @constructor
+ * @class
  * @return {TZDate}
  */
 function TZDate() {}
 
 /**
  * The TimeDuration object that contains the length and its associated time unit.
- * @constructor
+ * @class
  * @return {TimeDuration}
  */
 function TimeDuration() {}
 
 /**
  * Returns the current date / time.
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {TZDate}
  */
 TimeUtil.prototype.getCurrentDateTime = function() {};
 
 /**
  * Returns identifier of the local system timezone.
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {string}
  */
 TimeUtil.prototype.getLocalTimezone = function() {};
@@ -3591,7 +3591,7 @@ TimeUtil.prototype.getLocalTimezone = function() {};
  * Zero or more slashes separate different components of a timezone identifier,
  * with the most general descriptor first and the most specific one last. For example,
  * 'Europe/Berlin', 'America/Argentina/Buenos_Aires'.
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {Array}
  */
 TimeUtil.prototype.getAvailableTimezones = function() {};
@@ -3606,7 +3606,7 @@ TimeUtil.prototype.getAvailableTimezones = function() {};
  * "y" = year
  * Examples of string formats include: "d/m/y", "y-d-m", "D, M d y".
  * @param {boolean} shortformat
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {string}
  */
 TimeUtil.prototype.getDateFormat = function(shortformat) {};
@@ -3619,7 +3619,7 @@ TimeUtil.prototype.getDateFormat = function(shortformat) {};
  * "s" = seconds (0 to 59)
  * "ap" = AM/PM display
  * Examples of string formats include: "h:m:s ap", "h:m:s".
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {string}
  */
 TimeUtil.prototype.getTimeFormat = function() {};
@@ -3627,7 +3627,7 @@ TimeUtil.prototype.getTimeFormat = function() {};
 /**
  * Returns if the given year is a leap year.
  * @param {number} year
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {boolean}
  */
 TimeUtil.prototype.isLeapYear = function(year) {};
@@ -3635,14 +3635,14 @@ TimeUtil.prototype.isLeapYear = function(year) {};
 /**
  * Sets a listener for receiving any notification when the time or date was set.
  * @param {SuccessCallback} changeCallback
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {void}
  */
 TimeUtil.prototype.setDateTimeChangeListener = function(changeCallback) {};
 
 /**
  * Unsets the listener to stop receiving notifications when the time or date was set.
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {void}
  */
 TimeUtil.prototype.unsetDateTimeChangeListener = function() {};
@@ -3650,21 +3650,21 @@ TimeUtil.prototype.unsetDateTimeChangeListener = function() {};
 /**
  * Sets a listener for receiving any notification for the changes of the time zone on a device.
  * @param {SuccessCallback} changeCallback
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {void}
  */
 TimeUtil.prototype.setTimeZoneChangeListener = function(changeCallback) {};
 
 /**
  * Unsets the listener to stop receiving notifications for the changes of the time zone on a device.
- * @memberOf TimeUtil
+ * @memberof TimeUtil
  * @return {void}
  */
 TimeUtil.prototype.unsetTimeZoneChangeListener = function() {};
 
 /**
  * Returns the day of the month (from 1-31).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getDate = function() {};
@@ -3675,14 +3675,14 @@ TZDate.prototype.getDate = function() {};
  * it will be calculated automatically.
  * For example, if TZDate's month is May and parameter is 32, it will be June 1.
  * @param {number} date
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setDate = function(date) {};
 
 /**
  * Returns the day of the week (from 0-6).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getDay = function() {};
@@ -3691,7 +3691,7 @@ TZDate.prototype.getDay = function() {};
  * Returns the year.
  * Positive values indicate AD(Anno Domini) years. 0 and negative values indicate BC(Before Christ) years.
  * For example, 1 = AD 1, 0 = BC 1, -1 = BC 2.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getFullYear = function() {};
@@ -3699,14 +3699,14 @@ TZDate.prototype.getFullYear = function() {};
 /**
  * Sets the year.
  * @param {number} year
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setFullYear = function(year) {};
 
 /**
  * Returns the hour (0-23).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getHours = function() {};
@@ -3716,14 +3716,14 @@ TZDate.prototype.getHours = function() {};
  * If it tries to set the hour bigger than 23 or smaller than 0, it will be calculated automatically.
  * For example, if hours is 24, it will set 0 and add to a date.
  * @param {number} hours
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setHours = function(hours) {};
 
 /**
  * Returns the milliseconds (from 0-999).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getMilliseconds = function() {};
@@ -3733,14 +3733,14 @@ TZDate.prototype.getMilliseconds = function() {};
  * If it tries to set the millisecond bigger than 999 or smaller than 0, it will be calculated automatically.
  * For example, if ms is 1000, it will set 0 and add to a second.
  * @param {number} ms
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setMilliseconds = function(ms) {};
 
 /**
  * Returns the minutes (from 0-59).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getMinutes = function() {};
@@ -3750,14 +3750,14 @@ TZDate.prototype.getMinutes = function() {};
  * If it tries to set the minute bigger than 59 or smaller than 0, it will be calculated automatically.
  * For example, if minutes is 60, it will set 0 and add to an hour.
  * @param {number} minutes
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setMinutes = function(minutes) {};
 
 /**
  * Returns the month (from 0-11).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getMonth = function() {};
@@ -3767,14 +3767,14 @@ TZDate.prototype.getMonth = function() {};
  * If it tries to set the month bigger than 11 or smaller than 0, it will be calculated automatically.
  * For example, if month is 12, it will set 0 and add to a year.
  * @param {number} month
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setMonth = function(month) {};
 
 /**
  * Returns the seconds (from 0-59).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getSeconds = function() {};
@@ -3784,14 +3784,14 @@ TZDate.prototype.getSeconds = function() {};
  * If it tries to set the second bigger than 59 or smaller than 0, it will be calculated automatically.
  * For example, if seconds is 60, it will set 0 and add to a minute.
  * @param {number} seconds
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setSeconds = function(seconds) {};
 
 /**
  * Returns the day of the month, according to universal time (from 1-31).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCDate = function() {};
@@ -3802,14 +3802,14 @@ TZDate.prototype.getUTCDate = function() {};
  * it will be calculated automatically.
  * For example, if TZDate's month is May and date is 32, it will be June 1.
  * @param {number} date
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCDate = function(date) {};
 
 /**
  * Returns the day of the week, according to universal time (from 0-6).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCDay = function() {};
@@ -3818,7 +3818,7 @@ TZDate.prototype.getUTCDay = function() {};
  * Returns the year, according to universal time.
  * Positive values indicate AD(Anno Domini) years. 0 and negative values indicate BC(Before Christ) years.
  * For example, 1 = AD 1, 0 = BC 1, -1 = BC 2.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCFullYear = function() {};
@@ -3826,14 +3826,14 @@ TZDate.prototype.getUTCFullYear = function() {};
 /**
  * Sets the year, according to universal time.
  * @param {number} year
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCFullYear = function(year) {};
 
 /**
  * Returns the hour, according to universal time (0-23).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCHours = function() {};
@@ -3843,14 +3843,14 @@ TZDate.prototype.getUTCHours = function() {};
  * If it tries to set the hour bigger than 23 or smaller than 0, it will be calculated automatically.
  * For example, if hours is 24, it will set 0 and add to a date.
  * @param {number} hours
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCHours = function(hours) {};
 
 /**
  * Returns the milliseconds, according to universal time (from 0-999).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCMilliseconds = function() {};
@@ -3860,14 +3860,14 @@ TZDate.prototype.getUTCMilliseconds = function() {};
  * If it tries to set the millisecond bigger than 999 or smaller than 0, it will be calculated automatically.
  * For example, if ms is 1000, it will set 0 and add to a second.
  * @param {number} ms
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCMilliseconds = function(ms) {};
 
 /**
  * Returns the minutes, according to universal time (from 0-59).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCMinutes = function() {};
@@ -3877,14 +3877,14 @@ TZDate.prototype.getUTCMinutes = function() {};
  * If it tries to set the minute bigger than 59 or smaller than 0, it will be calculated automatically.
  * For example, if minutes is 60, it will set 0 and add to an hour.
  * @param {number} minutes
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCMinutes = function(minutes) {};
 
 /**
  * Returns the month, according to universal time (from 0-11).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCMonth = function() {};
@@ -3894,14 +3894,14 @@ TZDate.prototype.getUTCMonth = function() {};
  * If it tries to set the month bigger than 11 or smaller than 0, it will be calculated automatically.
  * For example, if month is 12, it will set 0 and add to a year.
  * @param {number} month
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCMonth = function(month) {};
 
 /**
  * Returns the seconds, according to universal time (from 0-59).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.getUTCSeconds = function() {};
@@ -3911,7 +3911,7 @@ TZDate.prototype.getUTCSeconds = function() {};
  * If it tries to set the second bigger than 59 or smaller than 0, it will be calculated automatically.
  * For example, if seconds is 60, it will set 0 and add to a minute.
  * @param {number} seconds
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {void}
  */
 TZDate.prototype.setUTCSeconds = function(seconds) {};
@@ -3922,7 +3922,7 @@ TZDate.prototype.setUTCSeconds = function(seconds) {};
  * descriptor first and the most specific one last. For example,
  * 'Europe/Berlin', 'America/Argentina/Buenos_Aires'.
  * This attribute uniquely identifies the timezone.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.getTimezone = function() {};
@@ -3930,21 +3930,21 @@ TZDate.prototype.getTimezone = function() {};
 /**
  * Returns a copy of the TZDate converted to a given time zone.
  * @param {string} tzid
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TZDate}
  */
 TZDate.prototype.toTimezone = function(tzid) {};
 
 /**
  * Returns a copy of the TZDate converted to the local time zone.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TZDate}
  */
 TZDate.prototype.toLocalTimezone = function() {};
 
 /**
  * Returns a copy of the TZDate converted to Coordinated Universal Time (UTC).
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TZDate}
  */
 TZDate.prototype.toUTC = function() {};
@@ -3960,7 +3960,7 @@ TZDate.prototype.toUTC = function() {};
  * 0 if the two date / times are equal
  * Positive, if other is in the past
  * @param {TZDate} other
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TimeDuration}
  */
 TZDate.prototype.difference = function(other) {};
@@ -3970,7 +3970,7 @@ TZDate.prototype.difference = function(other) {};
  * This method takes the timezones into consideration and will return trueif the two TZDate objects represent
  * the same instant in different timezones.
  * @param {TZDate} other
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {boolean}
  */
 TZDate.prototype.equalsTo = function(other) {};
@@ -3979,7 +3979,7 @@ TZDate.prototype.equalsTo = function(other) {};
  * Checks if the TZDate is earlier than another.
  * This method takes the timezones into consideration.
  * @param {TZDate} other
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {boolean}
  */
 TZDate.prototype.earlierThan = function(other) {};
@@ -3988,7 +3988,7 @@ TZDate.prototype.earlierThan = function(other) {};
  * Checks if the TZDate is later than another.
  * This method takes the timezones into consideration.
  * @param {TZDate} other
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {boolean}
  */
 TZDate.prototype.laterThan = function(other) {};
@@ -3998,49 +3998,49 @@ TZDate.prototype.laterThan = function(other) {};
  * If the length of duration is negative, the new date / time will be earlier than it used to.
  * Note that calling this method does not alter the current object.
  * @param {TimeDuration} duration
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TZDate}
  */
 TZDate.prototype.addDuration = function(duration) {};
 
 /**
  * Returns the date portion of a TZDate object as a string, using locale conventions.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.toLocaleDatestring = function() {};
 
 /**
  * Returns the time portion of a TZDate object as a string, using locale conventions.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.toLocaleTimestring = function() {};
 
 /**
  * Converts a TZDate object to a string, using locale conventions.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.toLocalestring = function() {};
 
 /**
  * Returns the date portion of a TZDate object as a string.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.toDatestring = function() {};
 
 /**
  * Returns the time portion of a TZDate object as a string.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.toTimestring = function() {};
 
 /**
  * Converts a TZDate object to a string.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.tostring = function() {};
@@ -4049,7 +4049,7 @@ TZDate.prototype.tostring = function() {};
  * Determines the time zone abbreviation to be used at a particular date in the time zone.
  * For example, in Toronto this is currently "EST" during the winter months and "EDT" during the
  * summer months when daylight savings time is in effect.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {string}
  */
 TZDate.prototype.getTimezoneAbbreviation = function() {};
@@ -4058,7 +4058,7 @@ TZDate.prototype.getTimezoneAbbreviation = function() {};
  * Gets the number of seconds from Coordinated Universal Time (UTC) offset for the timezone.
  * Returns the offset (in seconds) from UTC of the timezone, accounting for daylight
  * savings if in effect in the timezone. For example, if time zone is GMT+8, it will return -32,400.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {number}
  */
 TZDate.prototype.secondsFromUTC = function() {};
@@ -4067,21 +4067,21 @@ TZDate.prototype.secondsFromUTC = function() {};
  * Indicates if Daylight Saving Time(DST) is active for this TZDate.
  * Indicates if daylight savings are in effect for the time zone and instant
  * identified by the TZDate object.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {boolean}
  */
 TZDate.prototype.isDST = function() {};
 
 /**
  * Returns the date of the previous daylight saving time transition for the timezone.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TZDate}
  */
 TZDate.prototype.getPreviousDSTTransition = function() {};
 
 /**
  * Returns the date of the next daylight saving time transition for the timezone.
- * @memberOf TZDate
+ * @memberof TZDate
  * @return {TZDate}
  */
 TZDate.prototype.getNextDSTTransition = function() {};
@@ -4118,7 +4118,7 @@ TimeDuration.prototype.unit;
  * The TimeDuration that is returned is effectively first - other (that is: positive if the first parameter is larger).
  * The returned TimeDuration is the biggest possible unit without losing the precision.
  * @param {TimeDuration} other
- * @memberOf TimeDuration
+ * @memberof TimeDuration
  * @return {TimeDuration}
  */
 TimeDuration.prototype.difference = function(other) {};
@@ -4128,7 +4128,7 @@ TimeDuration.prototype.difference = function(other) {};
  * This method takes the units into consideration and will return true
  * if the two TimeDuration objects represent the same duration in different units.
  * @param {TimeDuration} other
- * @memberOf TimeDuration
+ * @memberof TimeDuration
  * @return {boolean}
  */
 TimeDuration.prototype.equalsTo = function(other) {};
@@ -4137,7 +4137,7 @@ TimeDuration.prototype.equalsTo = function(other) {};
  * Checks if the TimeDuration is lower than another.
  * This method takes the units into consideration when doing the comparison.
  * @param {TimeDuration} other
- * @memberOf TimeDuration
+ * @memberof TimeDuration
  * @return {boolean}
  */
 TimeDuration.prototype.lessThan = function(other) {};
@@ -4146,7 +4146,7 @@ TimeDuration.prototype.lessThan = function(other) {};
  * Checks if the TimeDuration is greater than another.
  * This method takes the units into consideration when doing the comparison.
  * @param {TimeDuration} other
- * @memberOf TimeDuration
+ * @memberof TimeDuration
  * @return {boolean}
  */
 TimeDuration.prototype.greaterThan = function(other) {};
@@ -4156,7 +4156,7 @@ TimeDuration.prototype.greaterThan = function(other) {};
  * The composite filters can be one of the 2 types:
  * The union - used to filter objects that match any of the filters it includes.
  * The intersection - used to filter objects that match all filters it includes.
- * @constructor
+ * @class
  * @return {CompositeFilter}
  */
 function CompositeFilter() {}
@@ -4175,7 +4175,7 @@ let ErrorCallback;
  * This interface will be used by the APIs to throw errors synchronously.
  * The attempt to set an attribute value may or may not raise WebAPIException synchronously with error type
  * TypeMismatchError or InvalidValuesError.
- * @constructor
+ * @class
  * @return {WebAPIException}
  */
 function WebAPIException() {}
@@ -4183,7 +4183,7 @@ function WebAPIException() {}
 /**
  * Represents a filter based on an object attribute which has values that are within a particular range.
  * Range filters, where only one boundary is set, are available.
- * @constructor
+ * @class
  * @return {AttributeRangeFilter}
  */
 function AttributeRangeFilter() {}
@@ -4191,7 +4191,7 @@ function AttributeRangeFilter() {}
 /**
  * Represents a point (latitude and longitude) in map coordinate system.
  * Latitude and longitude are of the WGS84 datum.
- * @constructor
+ * @class
  * @return {SimpleCoordinates}
  */
 function SimpleCoordinates() {}
@@ -4202,7 +4202,7 @@ function SimpleCoordinates() {}
  * If no matchValue is defined, the filter will match all objects that have the attribute
  * defined (same as the "EXISTS" filter works), otherwise, it will only match objects which have an attribute
  * that matches the specified value.
- * @constructor
+ * @class
  * @return {AttributeFilter}
  */
 function AttributeFilter() {}
@@ -4210,7 +4210,7 @@ function AttributeFilter() {}
 /**
  * Generic error interface.
  * This interface will be used by the APIs in order to return them in the error callback of asynchronous methods.
- * @constructor
+ * @class
  * @return {WebAPIError}
  */
 function WebAPIError() {}
@@ -4227,7 +4227,7 @@ let SuccessCallback;
  * The root of Tizen Web Device API.
  * This is the Tizen root interface.
  * It is a property of the ECMAScript global object, as specified by the TizenObject interface.
- * @constructor
+ * @class
  * @return {Tizen}
  */
 function Tizen() {}
@@ -4236,7 +4236,7 @@ function Tizen() {}
  * This is a common interface used by different types of object filters.
  * Never use this base interface directly, instead use AbstractFilter subtypes,
  * such as AttributeFilter, AttributeRangeFilter, and CompositeFilter.
- * @constructor
+ * @class
  * @return {AbstractFilter}
  */
 function AbstractFilter() {}
@@ -4244,7 +4244,7 @@ function AbstractFilter() {}
 /**
  * This is a common interface used for sorting of queried data.
  * Note that the sorting result of list type attributes is not determined.
- * @constructor
+ * @class
  * @return {SortMode}
  */
 function SortMode() {}
@@ -4578,7 +4578,7 @@ let VolumeChangeCallback;
 
 /**
  * This interface provides access to the API funtionalities through the interface.
- * @constructor
+ * @class
  */
 function AudioControlManager() {}
 
@@ -4587,14 +4587,14 @@ function AudioControlManager() {}
  * Note that turning on mute mode does not change volume level but it simply disables any sound. Turning off the mute
  * will enable sound with the volume level. If setVolumeUp or setVolumeDown functions are used, then mute is disabled.
  * @param {boolean} mute
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.setMute = function(mute) {};
 
 /**
  * Gets the mute state.
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {boolean}
  */
 AudioControlManager.prototype.isMute = function() {};
@@ -4603,7 +4603,7 @@ AudioControlManager.prototype.isMute = function() {};
  * Changes the volume level.
  * The value of volume is allowed from 0 to 100. If an invalid value is passed, InvalidValuesError will occur.
  * @param {number} volume
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.setVolume = function(volume) {};
@@ -4611,7 +4611,7 @@ AudioControlManager.prototype.setVolume = function(volume) {};
 /**
  * Increases the volume by 1 level. If it is called when the volume level is 100, it will be ignored because
  * the maximum volume level is 100. If mute is enabled, then execution of this functions will disable it.
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.setVolumeUp = function() {};
@@ -4620,14 +4620,14 @@ AudioControlManager.prototype.setVolumeUp = function() {};
  * Decreases the volume by 1 level.
  * If it is called when the volume level is 0, it will be ignored because the minimum volume level is 0.
  * If mute is enabled, then execution of this functions will disable it.
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.setVolumeDown = function() {};
 
 /**
  * Gets the current volume level.
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {number}
  */
 AudioControlManager.prototype.getVolume = function() {};
@@ -4636,21 +4636,21 @@ AudioControlManager.prototype.getVolume = function() {};
  * Registers a volume change callback for getting notified when TV volume has been changed.
  * Note that this method overwrites the previously registered listener.
  * @param {VolumeChangeCallback} callback
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.setVolumeChangeListener = function(callback) {};
 
 /**
  * Unregisters the volume change callback for detecting the volume changes.
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.unsetVolumeChangeListener = function() {};
 
 /**
  * Gets the current audio output mode.
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {string}
  * @see OutputMode
  */
@@ -4660,21 +4660,21 @@ AudioControlManager.prototype.getOutputMode = function() {};
  * Plays the sound of a specific beep.
  * @param {string} type
  * @see BeepType
- * @memberOf AudioControlManager
+ * @memberof AudioControlManager
  * @return {void}
  */
 AudioControlManager.prototype.playSound = function(type) {};
 
 /**
  * This interface represents the object for identifying a TV channel.
- * @constructor
+ * @class
  * @return {ChannelInfo}
  */
 function ChannelInfo() {}
 
 /**
  * This interface represents information about the television program.
- * @constructor
+ * @class
  * @return {ProgramInfo}
  */
 function ProgramInfo() {}
@@ -4734,7 +4734,7 @@ let ProgramChangeCallback;
 
 /**
  * This interface provides access to the API functionalities through the interface.
- * @constructor
+ * @class
  * @return {ChannelManager}
  */
 function ChannelManager() {}
@@ -4871,7 +4871,7 @@ let TuneOption;
  * @param {TuneCallback} successCallback
  * @param {ErrorCallback} errorCallback
  * @param {WindowType} type
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.tune = function(tuneOption, successCallback, errorCallback, type) {};
@@ -4888,7 +4888,7 @@ ChannelManager.prototype.tune = function(tuneOption, successCallback, errorCallb
  * @param {ErrorCallback} errorCallback
  * @param {number} tuneMode
  * @param {WindowType} type
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.tuneUp = function(successCallback, errorCallback, tuneMode, type) {};
@@ -4905,7 +4905,7 @@ ChannelManager.prototype.tuneUp = function(successCallback, errorCallback, tuneM
  * @param {ErrorCallback} errorCallback
  * @param {number} tuneMode
  * @param {WindowType} type
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.tuneDown = function(successCallback, errorCallback, tuneMode, type) {};
@@ -4919,7 +4919,7 @@ ChannelManager.prototype.tuneDown = function(successCallback, errorCallback, tun
  * @param {number} minor
  * @param {FindChannelSuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.findChannel = function(major, minor, successCallback, errorCallback) {};
@@ -4937,7 +4937,7 @@ ChannelManager.prototype.findChannel = function(major, minor, successCallback, e
  * @param {number} mode
  * @param {number} nStart
  * @param {number} number
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.getChannelList = function(successCallback, errorCallback, mode, nStart, number) {};
@@ -4945,7 +4945,7 @@ ChannelManager.prototype.getChannelList = function(successCallback, errorCallbac
 /**
  * Gets information about the current channel.
  * @param {WindowType} type
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {ChannelInfo}
  */
 ChannelManager.prototype.getCurrentChannel = function(type) {};
@@ -4960,7 +4960,7 @@ ChannelManager.prototype.getCurrentChannel = function(type) {};
  * @param {ProgramListSuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
  * @param {number} duration
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.getProgramList = function(
@@ -4975,7 +4975,7 @@ ChannelManager.prototype.getProgramList = function(
  * Gets information about the current television program.
  * If there is no TV program data grabbed from broadcaster, it will return null.
  * @param {WindowType} type
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {ProgramInfo}
  */
 ChannelManager.prototype.getCurrentProgram = function(type) {};
@@ -4984,7 +4984,7 @@ ChannelManager.prototype.getCurrentProgram = function(type) {};
  * Adds a channel change listener for getting notified about the channel changes.
  * @param {ChannelChangeCallback} callback
  * @param {WindowType} type
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {number}
  */
 ChannelManager.prototype.addChannelChangeListener = function(callback, type) {};
@@ -4992,7 +4992,7 @@ ChannelManager.prototype.addChannelChangeListener = function(callback, type) {};
 /**
  * Removes the listener to stop receiving notifications for the channel changes.
  * @param {number} channelListenerId
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.removeChannelChangeListener = function(channelListenerId) {};
@@ -5001,7 +5001,7 @@ ChannelManager.prototype.removeChannelChangeListener = function(channelListenerI
  * Adds a listener for getting notified about the changes of program information.
  * @param {ProgramChangeCallback} callback
  * @param {ChannelInfo} channel
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {number}
  */
 ChannelManager.prototype.addProgramChangeListener = function(callback, channel) {};
@@ -5009,7 +5009,7 @@ ChannelManager.prototype.addProgramChangeListener = function(callback, channel) 
 /**
  * Removes the listener to stop receiving notifications for the change of TV program information.
  * @param {number} programListenerId
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {void}
  */
 ChannelManager.prototype.removeProgramChangeListener = function(programListenerId) {};
@@ -5017,7 +5017,7 @@ ChannelManager.prototype.removeProgramChangeListener = function(programListenerI
 /**
  * Gets the number of available tuners. If there is only one available tuner,
  * one of main video window and PIP window can be set to TV source.
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {number}
  */
 ChannelManager.prototype.getNumOfAvailableTuner = function() {};
@@ -5032,14 +5032,14 @@ ChannelManager.prototype.getNumOfAvailableTuner = function() {};
  * On the other hand, if your TV supports more than 1 tuner, then tv tuner will be
  * automatically assigned to the window you created as right one.
  * @param {?} sourceType
- * @memberOf ChannelManager
+ * @memberof ChannelManager
  * @return {number}
  */
 ChannelManager.prototype.getNumOfAvailableSources = function(sourceType) {};
 
 /**
  * This interface provides access to the Display Control API functionalities through the interface.
- * @constructor
+ * @class
  * @return {DisplayControlManager}
  */
 function DisplayControlManager() {}
@@ -5068,7 +5068,7 @@ let Display3DEffectMode = {
 
 /**
  * Gets the current 3D effect mode.
- * @memberOf DisplayControlManager
+ * @memberof DisplayControlManager
  * @return {Display3DEffectMode}
  */
 DisplayControlManager.prototype.get3DEffectMode = function() {};
@@ -5084,7 +5084,7 @@ let Display3DModeState = {
 
 /**
  * Checks whether playing 3D mode is available or not.
- * @memberOf DisplayControlManager
+ * @memberof DisplayControlManager
  * @return {Display3DModeState}
  */
 DisplayControlManager.prototype.is3DModeEnabled = function() {};
@@ -5093,7 +5093,7 @@ DisplayControlManager.prototype.is3DModeEnabled = function() {};
  * Gets the supported 3D effects.
  * @param {Mode3DEffectListSupportCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf DisplayControlManager
+ * @memberof DisplayControlManager
  * @return {void}
  */
 DisplayControlManager.prototype.getSupported3DEffectModeList = function(successCallback, errorCallback) {};
@@ -5116,7 +5116,7 @@ let WindowRectangleSuccessCallback;
 
 /**
  * This interface provides the features to check for availability and register for input device events.
- * @constructor
+ * @class
  * @return {TVInputDeviceManager}
  */
 function TVInputDeviceManager() {}
@@ -5173,7 +5173,7 @@ TVInputDeviceManager.prototype.unregisterKeyBatch = function(keyNames, successCa
 
 /**
  * This interface provides access to the API funtionalities through the interface.
- * @constructor
+ * @class
  * @return {TVWindowManager}
  */
 function TVWindowManager() {}
@@ -5182,7 +5182,7 @@ function TVWindowManager() {}
  * Gets the list of available windows.
  * @param {AvailableWindowListCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf TVWindowManager
+ * @memberof TVWindowManager
  * @return {void}
  */
 TVWindowManager.prototype.getAvailableWindows = function(successCallback, errorCallback) {};
@@ -5193,7 +5193,7 @@ TVWindowManager.prototype.getAvailableWindows = function(successCallback, errorC
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
  * @param {WindowType} type
- * @memberOf TVWindowManager
+ * @memberof TVWindowManager
  * @return {void}
  */
 TVWindowManager.prototype.setSource = function(videoSource, successCallback, errorCallback, type) {};
@@ -5201,7 +5201,7 @@ TVWindowManager.prototype.setSource = function(videoSource, successCallback, err
 /**
  * Gets information about the current source of a specified TV hole window.
  * @param {WindowType} type
- * @memberOf TVWindowManager
+ * @memberof TVWindowManager
  * @return {SystemInfoVideoSourceInfo}
  */
 TVWindowManager.prototype.getSource = function(type) {};
@@ -5224,7 +5224,7 @@ TVWindowManager.prototype.getSource = function(type) {};
  * @param {ErrorCallback} errorCallback
  * @param {Array} rectangle
  * @param {WindowType} type
- * @memberOf TVWindowManager
+ * @memberof TVWindowManager
  * @return {void}
  */
 TVWindowManager.prototype.show = function(successCallback, errorCallback, rectangle, type) {};
@@ -5234,7 +5234,7 @@ TVWindowManager.prototype.show = function(successCallback, errorCallback, rectan
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
  * @param {WindowType} type
- * @memberOf TVWindowManager
+ * @memberof TVWindowManager
  * @return {void}
  */
 TVWindowManager.prototype.hide = function(successCallback, errorCallback, type) {};
@@ -5258,7 +5258,7 @@ let MeasurementUnit = {
  * @param {ErrorCallback} errorCallback
  * @param {MeasurementUnit} unit
  * @param {WindowType} type
- * @memberOf TVWindowManager
+ * @memberof TVWindowManager
  * @return {void}
  */
 TVWindowManager.prototype.getRect = function(successCallback, errorCallback, unit, type) {};
@@ -5266,7 +5266,7 @@ TVWindowManager.prototype.getRect = function(successCallback, errorCallback, uni
 /**
  * This is the top-level interface for the WebSetting API that managed the settings of
  * the Web view in your Web application.
- * @constructor
+ * @class
  * @return {WebSettingManager}
  */
 function WebSettingManager() {}
@@ -5281,7 +5281,7 @@ function WebSettingManager() {}
  * @param {string} userAgent
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf WebSettingManager
+ * @memberof WebSettingManager
  * @return {void}
  */
 WebSettingManager.prototype.setUserAgentstring = function(userAgent, successCallback, errorCallback) {};
@@ -5294,7 +5294,7 @@ WebSettingManager.prototype.setUserAgentstring = function(userAgent, successCall
  * UnknownError - If any error occurs while deleting the cookies.
  * @param {SuccessCallback} successCallback
  * @param {ErrorCallback} errorCallback
- * @memberOf WebSettingManager
+ * @memberof WebSettingManager
  * @return {void}
  */
 WebSettingManager.prototype.removeAllCookies = function(successCallback, errorCallback) {};

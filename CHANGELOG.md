@@ -1,3 +1,8 @@
+# 2.1.2 (18.08.2019)
+
+* Fixed error during installation of device year was not provided
+* Update to ESLint 6
+
 # 2.1.1 (05.08.2019)
 
 ## Features
