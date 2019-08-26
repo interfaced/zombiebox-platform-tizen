@@ -1,5 +1,5 @@
 /**
- * @class
+ * @constructor
  */
 let Webapis = function() {};
 

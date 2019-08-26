@@ -1,3 +1,9 @@
+# 2.1.4 (26.08.2019)
+
+* Update dependencies and fix GCC warnings.
+
+# 2.1.3 was skipped
+
 # 2.1.2 (18.08.2019)
 
 * Fixed error during installation of device year was not provided

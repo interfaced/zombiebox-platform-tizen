@@ -2,7 +2,7 @@
  * This interface provides the relative alarm, which occurs at a fixed interval in future.
  * This alarm triggers after a duration mentioned in delay attribute from the moment the alarm is added.
  * If a period is provided, the alarm keeps triggering for the given interval.
- * @class
+ * @constructor
  * @return {AlarmRelative}
  */
 function AlarmRelative() {}
@@ -11,21 +11,21 @@ function AlarmRelative() {}
  * This interface provides an absolute alarm, which triggers at a specified absolute date.
  * If a period is provided, the alarm keeps triggering for the given interval. If the daysOfTheWeek array
  * is not empty, the alarm triggers every week, for the given days, at the time defined by date attribute.
- * @class
+ * @constructor
  * @return {AlarmAbsolute}
  */
 function AlarmAbsolute() {}
 
 /**
  * This interface is an abstract interface for alarm types.
- * @class
+ * @constructor
  * @return {Alarm}
  */
 function Alarm() {}
 
 /**
  * This interface provides methods to manage alarms.
- * @class
+ * @constructor
  * @return {AlarmManager}
  */
 function AlarmManager() {}
@@ -162,14 +162,14 @@ AlarmManager.prototype.getAll = function() {};
 /**
  * This interface defines the current application's information and the basic operations (such as exit or hide)
  * for the current application .
- * @class
+ * @constructor
  * @return {Application}
  */
 function Application() {}
 
 /**
  * This interface defines the certificate information of an installed application.
- * @class
+ * @constructor
  * @return {ApplicationCertificate}
  */
 function ApplicationCertificate() {}
@@ -211,7 +211,7 @@ let ApplicationControlDataArrayReplyCallback;
 
 /**
  * This interface defines a key/value pair used to pass data between applications through the interface.
- * @class
+ * @constructor
  * @param {string} key
  * @param {Array<string>} value
  * @return {ApplicationControlData}
@@ -220,7 +220,7 @@ function ApplicationControlData(key, value) {}
 
 /**
  * This interface defines the general information available to an installed application.
- * @class
+ * @constructor
  * @return {ApplicationInformation}
  */
 function ApplicationInformation() {}
@@ -237,14 +237,14 @@ let ApplicationContextArraySuccessCallback;
 
 /**
  * This interface defines the information available about a running application.
- * @class
+ * @constructor
  * @return {ApplicationContext}
  */
 function ApplicationContext() {}
 
 /**
  * This section defines the application manager interface.
- * @class
+ * @constructor
  * @return {ApplicationManager}
  */
 function ApplicationManager() {}
@@ -254,7 +254,7 @@ function ApplicationManager() {}
  * applications and is passed to launch other applications. If the system gets the application control request,
  * it finds the corresponding application to be launched with the delivered application control and launches
  * the selected application.
- * @class
+ * @constructor
  * @param {?string} operation
  * @param {?string} uri
  * @param {?string} mime
@@ -279,7 +279,7 @@ let ApplicationInformationEventCallback;
 
 /**
  * This interface defines the meta data of an installed application.
- * @class
+ * @constructor
  * @return {ApplicationMetaData}
  */
 function ApplicationMetaData() {}
@@ -289,7 +289,7 @@ function ApplicationMetaData() {}
  * to launch other applications. The newly launched application can get the requested application control through
  * method, and send the results to the calling application through the method after performing the required action
  * requested the calling application.
- * @class
+ * @constructor
  * @return {RequestedApplicationControl}
  */
 function RequestedApplicationControl() {}
@@ -691,7 +691,7 @@ RequestedApplicationControl.prototype.replyFailure = function() {};
 
 /**
  * This interface implements the object.
- * @class
+ * @constructor
  * @return {BookmarkFolder}
  */
 function BookmarkFolder() {}
@@ -699,14 +699,14 @@ function BookmarkFolder() {}
 /**
  * This interface provides access to the bookmark folder and bookmark item.
  * It provides access to the API functionalities through the tizen.bookmark interface.
- * @class
+ * @constructor
  * @return {BookmarkManager}
  */
 function BookmarkManager() {}
 
 /**
  * This interface implements the object.
- * @class
+ * @constructor
  * @return {BookmarkItem}
  */
 function BookmarkItem() {}
@@ -797,14 +797,14 @@ let ContentScanSuccessCallback;
 
 /**
  * This interface provides lyrics for music.
- * @class
+ * @constructor
  * @return {AudioContentLyrics}
  */
 function AudioContentLyrics() {}
 
 /**
  * This interface provides access to properties of a content.
- * @class
+ * @constructor
  * @return {Content}
  */
 function Content() {}
@@ -818,7 +818,7 @@ let ContentArraySuccessCallback;
 
 /**
  * This interface extends a basic object with image-specific attributes.
- * @class
+ * @constructor
  * @return {ImageContent}
  */
 function ImageContent() {}
@@ -839,21 +839,21 @@ let ContentChangeCallback;
 
 /**
  * This interface extends a basic object with audio-specific attributes.
- * @class
+ * @constructor
  * @return {AudioContent}
  */
 function AudioContent() {}
 
 /**
  * This interface extends a basic object with video-specific attributes.
- * @class
+ * @constructor
  * @return {VideoContent}
  */
 function VideoContent() {}
 
 /**
  * This interface provides operations to retrieve and manipulate contents.
- * @class
+ * @constructor
  * @return {ContentManager}
  */
 function ContentManager() {}
@@ -867,7 +867,7 @@ let ContentDirectoryArraySuccessCallback;
 
 /**
  * This interface that provides access to properties of a content directory.
- * @class
+ * @constructor
  * @return {ContentDirectory}
  */
 function ContentDirectory() {}
@@ -1250,14 +1250,14 @@ ContentDirectory.prototype.modifiedDate;
 
 /**
  * This interface handles requests for downloading. Each step of download operation will be informed through callbacks.
- * @class
+ * @constructor
  * @return {DownloadManager}
  */
 function DownloadManager() {}
 
 /**
  * This interface defines the download request object.
- * @class
+ * @constructor
  * @return {DownloadRequest}
  */
 function DownloadRequest() {}
@@ -1434,7 +1434,7 @@ let FileSystemStorageSuccessCallback;
  * This manager interface exposes the Filesystem base API, and provides functionalities, such
  * as determining root and default locations, resolving a given location into a file handle, and registering
  * filesystem listeners for filesystem events.
- * @class
+ * @constructor
  * @return {FileSystemManager}
  */
 function FileSystemManager() {}
@@ -1449,7 +1449,7 @@ function FileSystemManager() {}
  * to be granted through the initial resolve() method or through the openStream() method of the File interface.
  * Therefore, all actions performed on a successfully resolved File and FileStream are expected to succeed.
  * This avoids successive asynchronous calls and may potentially increase application for a user.
- * @class
+ * @constructor
  * @return {FileStream}
  */
 function FileStream() {}
@@ -1476,7 +1476,7 @@ let FileSuccessCallback;
  * such as reading and writing.
  * A file handle representing a directory can be used for listing all
  * files and directories rooted as the file handle location.
- * @class
+ * @constructor
  * @return {File}
  */
 function File2() {}
@@ -1485,7 +1485,7 @@ function File2() {}
  * This interface gives additional information about a storage, such as if the device is mounted,
  * if it's a removable drive or not, or the device's name.
  * To retrieve the mount point, the resolve() method should be used using the label as argument.
- * @class
+ * @constructor
  * @return {FileSystemStorage}
  */
 function FileSystemStorage() {}
@@ -2108,14 +2108,14 @@ let PackageInformationEventCallback;
 
 /**
  * This interface defines the general information available to an installed package.
- * @class
+ * @constructor
  * @return {PackageInformation}
  */
 function PackageInformation() {}
 
 /**
  * This interface defines the package manager.
- * @class
+ * @constructor
  * @return {PackageManager}
  */
 function PackageManager() {}
@@ -2262,70 +2262,70 @@ PackageManager.prototype.unsetPackageInfoEventListener = function() {};
 
 /**
  * This property reflects the information of the device orientation in this system.
- * @class
+ * @constructor
  * @return {SystemInfoDeviceOrientation}
  */
 function SystemInfoDeviceOrientation() {}
 
 /**
  * This property reflects the locale information of the current device.
- * @class
+ * @constructor
  * @return {SystemInfoLocale}
  */
 function SystemInfoLocale() {}
 
 /**
  * This property reflects the video sources the device has.
- * @class
+ * @constructor
  * @return {SystemInfoVideoSource}
  */
 function SystemInfoVideoSource() {}
 
 /**
  * This property reflects the information of the current device.
- * @class
+ * @constructor
  * @return {SystemInfoBuild}
  */
 function SystemInfoBuild() {}
 
 /**
  * This property reflects the state of the CPUs available to this system.
- * @class
+ * @constructor
  * @return {SystemInfoCpu}
  */
 function SystemInfoCpu() {}
 
 /**
  * This property exposes the data storage devices connected to this system.
- * @class
+ * @constructor
  * @return {SystemInfoStorage}
  */
 function SystemInfoStorage() {}
 
 /**
  * SystemInfoDeviceCapability object.
- * @class
+ * @constructor
  * @return {SystemInfoDeviceCapability}
  */
 function SystemInfoDeviceCapability() {}
 
 /**
  * This property reflects the general state of the system's battery
- * @class
+ * @constructor
  * @return {SystemInfoBattery}
  */
 function SystemInfoBattery() {}
 
 /**
  * This property reflects the information of the Wi-Fi network in this system.
- * @class
+ * @constructor
  * @return {SystemInfoWifiNetwork}
  */
 function SystemInfoWifiNetwork() {}
 
 /**
  * This property reflects the peripheral information of the current device.
- * @class
+ * @constructor
  * @return {SystemInfoPeripheral}
  */
 function SystemInfoPeripheral() {}
@@ -2341,7 +2341,7 @@ let SystemInfoPropertySuccessCallback;
 
 /**
  * This property reflects the information of the Display.
- * @class
+ * @constructor
  * @return {SystemInfoDisplay}
  */
 function SystemInfoDisplay() {}
@@ -2350,35 +2350,35 @@ function SystemInfoDisplay() {}
  * This entry interface queries the information of a system.
  * This API offers methods for retrieving system information
  * and for subscribing notifications of system information changes.
- * @class
+ * @constructor
  * @return {SystemInfo}
  */
 function SystemInfo() {}
 
 /**
  * This property reflects the information of the SIM card information.
- * @class
+ * @constructor
  * @return {SystemInfoSIM}
  */
 function SystemInfoSIM() {}
 
 /**
  * This is a common abstract interface used by different types of system information objects.
- * @class
+ * @constructor
  * @return {SystemInfoProperty}
  */
 function SystemInfoProperty() {}
 
 /**
  * This property reflects the information of the Cellular network in this system.
- * @class
+ * @constructor
  * @return {SystemInfoCellularNetwork}
  */
 function SystemInfoCellularNetwork() {}
 
 /**
  * This property reflects the information of the data network in this system.
- * @class
+ * @constructor
  * @return {SystemInfoNetwork}
  */
 function SystemInfoNetwork() {}
@@ -2387,14 +2387,14 @@ function SystemInfoNetwork() {}
  * This property reflects each input source the current device has.
  * If there are 2 HDMI inputs on a device, Two SystemInfoVideoSourceInfo objects must be retreived
  * through SystemInfoVideoSource{type=HDMI, number=1}, {type=HDMI, number=2}
- * @class
+ * @constructor
  * @return {SystemInfoVideoSourceInfo}
  */
 function SystemInfoVideoSourceInfo() {}
 
 /**
  * This property exposes a single storage device connected to this system.
- * @class
+ * @constructor
  * @return {SystemInfoStorageUnit}
  */
 function SystemInfoStorageUnit() {}
@@ -3552,7 +3552,7 @@ SystemInfoStorageUnit.prototype.isRemoveable;
  * This interface offers methods to manage date / time as well as timezones such as:
  * Get the current date / time using getCurrentDateTime().
  * Get timezones using getLocalTimezone() and getAvailableTimezones().
- * @class
+ * @constructor
  * @return {TimeUtil}
  */
 function TimeUtil() {}
@@ -3560,14 +3560,14 @@ function TimeUtil() {}
 /**
  * The TZDate object represents information regarding a given date / time in a predefined timezone.
  * If its date / time is exceed the platform limit, TZDate will be invalid.
- * @class
+ * @constructor
  * @return {TZDate}
  */
 function TZDate() {}
 
 /**
  * The TimeDuration object that contains the length and its associated time unit.
- * @class
+ * @constructor
  * @return {TimeDuration}
  */
 function TimeDuration() {}
@@ -4156,7 +4156,7 @@ TimeDuration.prototype.greaterThan = function(other) {};
  * The composite filters can be one of the 2 types:
  * The union - used to filter objects that match any of the filters it includes.
  * The intersection - used to filter objects that match all filters it includes.
- * @class
+ * @constructor
  * @return {CompositeFilter}
  */
 function CompositeFilter() {}
@@ -4175,7 +4175,7 @@ let ErrorCallback;
  * This interface will be used by the APIs to throw errors synchronously.
  * The attempt to set an attribute value may or may not raise WebAPIException synchronously with error type
  * TypeMismatchError or InvalidValuesError.
- * @class
+ * @constructor
  * @return {WebAPIException}
  */
 function WebAPIException() {}
@@ -4183,7 +4183,7 @@ function WebAPIException() {}
 /**
  * Represents a filter based on an object attribute which has values that are within a particular range.
  * Range filters, where only one boundary is set, are available.
- * @class
+ * @constructor
  * @return {AttributeRangeFilter}
  */
 function AttributeRangeFilter() {}
@@ -4191,7 +4191,7 @@ function AttributeRangeFilter() {}
 /**
  * Represents a point (latitude and longitude) in map coordinate system.
  * Latitude and longitude are of the WGS84 datum.
- * @class
+ * @constructor
  * @return {SimpleCoordinates}
  */
 function SimpleCoordinates() {}
@@ -4202,7 +4202,7 @@ function SimpleCoordinates() {}
  * If no matchValue is defined, the filter will match all objects that have the attribute
  * defined (same as the "EXISTS" filter works), otherwise, it will only match objects which have an attribute
  * that matches the specified value.
- * @class
+ * @constructor
  * @return {AttributeFilter}
  */
 function AttributeFilter() {}
@@ -4210,7 +4210,7 @@ function AttributeFilter() {}
 /**
  * Generic error interface.
  * This interface will be used by the APIs in order to return them in the error callback of asynchronous methods.
- * @class
+ * @constructor
  * @return {WebAPIError}
  */
 function WebAPIError() {}
@@ -4227,7 +4227,7 @@ let SuccessCallback;
  * The root of Tizen Web Device API.
  * This is the Tizen root interface.
  * It is a property of the ECMAScript global object, as specified by the TizenObject interface.
- * @class
+ * @constructor
  * @return {Tizen}
  */
 function Tizen() {}
@@ -4236,7 +4236,7 @@ function Tizen() {}
  * This is a common interface used by different types of object filters.
  * Never use this base interface directly, instead use AbstractFilter subtypes,
  * such as AttributeFilter, AttributeRangeFilter, and CompositeFilter.
- * @class
+ * @constructor
  * @return {AbstractFilter}
  */
 function AbstractFilter() {}
@@ -4244,7 +4244,7 @@ function AbstractFilter() {}
 /**
  * This is a common interface used for sorting of queried data.
  * Note that the sorting result of list type attributes is not determined.
- * @class
+ * @constructor
  * @return {SortMode}
  */
 function SortMode() {}
@@ -4578,7 +4578,7 @@ let VolumeChangeCallback;
 
 /**
  * This interface provides access to the API funtionalities through the interface.
- * @class
+ * @constructor
  */
 function AudioControlManager() {}
 
@@ -4667,14 +4667,14 @@ AudioControlManager.prototype.playSound = function(type) {};
 
 /**
  * This interface represents the object for identifying a TV channel.
- * @class
+ * @constructor
  * @return {ChannelInfo}
  */
 function ChannelInfo() {}
 
 /**
  * This interface represents information about the television program.
- * @class
+ * @constructor
  * @return {ProgramInfo}
  */
 function ProgramInfo() {}
@@ -4734,7 +4734,7 @@ let ProgramChangeCallback;
 
 /**
  * This interface provides access to the API functionalities through the interface.
- * @class
+ * @constructor
  * @return {ChannelManager}
  */
 function ChannelManager() {}
@@ -5039,7 +5039,7 @@ ChannelManager.prototype.getNumOfAvailableSources = function(sourceType) {};
 
 /**
  * This interface provides access to the Display Control API functionalities through the interface.
- * @class
+ * @constructor
  * @return {DisplayControlManager}
  */
 function DisplayControlManager() {}
@@ -5116,7 +5116,7 @@ let WindowRectangleSuccessCallback;
 
 /**
  * This interface provides the features to check for availability and register for input device events.
- * @class
+ * @constructor
  * @return {TVInputDeviceManager}
  */
 function TVInputDeviceManager() {}
@@ -5173,7 +5173,7 @@ TVInputDeviceManager.prototype.unregisterKeyBatch = function(keyNames, successCa
 
 /**
  * This interface provides access to the API funtionalities through the interface.
- * @class
+ * @constructor
  * @return {TVWindowManager}
  */
 function TVWindowManager() {}
@@ -5266,7 +5266,7 @@ TVWindowManager.prototype.getRect = function(successCallback, errorCallback, uni
 /**
  * This is the top-level interface for the WebSetting API that managed the settings of
  * the Web view in your Web application.
- * @class
+ * @constructor
  * @return {WebSettingManager}
  */
 function WebSettingManager() {}

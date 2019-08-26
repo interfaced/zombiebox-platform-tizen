@@ -1,7 +1,7 @@
 /**
  * Privilege: http://developer.samsung.com/privilege/avplay
  * @see http://www.samsungdforum.com/TizenApiGuide/?FolderName=tizen3001&FileName=index.html
- * @class
+ * @constructor
  */
 let AVPlay = function() {};
 

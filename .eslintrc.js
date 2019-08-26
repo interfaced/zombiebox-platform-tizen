@@ -15,13 +15,6 @@ module.exports = {
 			}
 		},
 		{
-			files: ['externs/*.js'],
-			extends: 'interfaced/externs',
-			rules: {
-				'jsdoc/require-returns-check': 'off'
-			}
-		},
-		{
 			files: ['docs/examples/*.js', 'index.js', 'cli/*.js'],
 			extends: 'interfaced/node'
 		},
@@ -30,6 +23,15 @@ module.exports = {
 			globals: {
 				tizen: 'readonly',
 				webapis: 'readonly'
+			}
+		},
+		// TODO: either tune externs configs or restructurize externs here
+		{
+			files: ['externs/*.js'],
+			extends: 'interfaced/externs',
+			rules: {
+				'jsdoc/require-returns-check': 'off',
+				'jsdoc/check-tag-names': 'off'
 			}
 		},
 		{
