@@ -1,3 +1,9 @@
+# 2.1.4 (09.09.2019)
+
+Technical release to resolve some issues with ZombieBox version verification.
+
+No notable changes. 
+
 # 2.1.4 (26.08.2019)
 
 * Update dependencies and fix GCC warnings.
