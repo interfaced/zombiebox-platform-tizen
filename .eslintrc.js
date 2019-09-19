@@ -1,11 +1,5 @@
 module.exports = {
 	extends: 'interfaced',
-	rules: {
-		'prefer-promise-reject-errors': ['error', {allowEmptyReject: true}],
-		'jsdoc/check-tag-names': ["error", {
-			definedTags: ['dict']
-		}]
-	},
 	overrides: [
 		{
 			files: ['lib/**/*.js'],

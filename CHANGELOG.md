@@ -1,4 +1,8 @@
-# 2.1.4 (09.09.2019)
+# 2.1.6 (19.09.2019)
+
+Replace IThenable with Promise in jsdoc annotations to resolve linter/compiler warnings. 
+
+# 2.1.5 (09.09.2019)
 
 Technical release to resolve some issues with ZombieBox version verification.
 
