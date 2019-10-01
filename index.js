@@ -39,16 +39,13 @@ class Tizen extends AbstractPlatform {
 	buildCLI(yargs, app) {
 		return yargs
 			.command(
-				'install [device] [year]',
+				'install [device]',
 				'Installs application on a device',
 				(yargs) => yargs
 					.positional('device', {
 						describe: 'Device name or IP address'
-					})
-					.positional('year', {
-						describe: 'Device year'
 					}),
-				async ({device, year}) => {
+				async ({device}) => {
 					const config = app.getConfig();
 					const pathHelper = app.getPathHelper();
 					const {sdbDir} = config.platforms.tizen;
@@ -68,7 +65,7 @@ class Tizen extends AbstractPlatform {
 						);
 
 						if (wgtPath) {
-							return install(sdbDir, wgtPath, device, year);
+							return install(sdbDir, wgtPath, device);
 						}
 					}
 
@@ -76,7 +73,7 @@ class Tizen extends AbstractPlatform {
 				}
 			)
 			.command(
-				'launch <device>',
+				'launch [device]',
 				'Launches application on a device',
 				(yargs) => yargs
 					.positional('device', {

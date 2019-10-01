@@ -27,12 +27,12 @@ async function execAndConfirm(command, successResponse, successMessage) {
 				if (successMessage) {
 					console.log(successMessage);
 				}
-				resolve(stdout);
+				resolve(stdout.trim());
 			} else {
 				if (stderr) {
 					console.error(stderr);
 				}
-				reject(stderr || stdout);
+				reject(stderr || stdout.trim());
 			}
 		});
 	});

@@ -1,3 +1,8 @@
+# 2.1.7 (01.10.2019)
+
+* CLI was refactored and its usage simplified. No longer required device year parameter.
+* Fix installation on 2018 models.
+
 # 2.1.6 (19.09.2019)
 
 Replace IThenable with Promise in jsdoc annotations to resolve linter/compiler warnings. 

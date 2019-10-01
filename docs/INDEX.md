@@ -61,15 +61,13 @@ npx zb build tizen
 #### Installation
 
 ```bash
-npx zb tizen install [device] [year]
-npx zb tizen install --device 192.168.0.0 --year 2016
+npx zb tizen install [device]
+npx zb tizen install --device 192.168.0.0
 ```
 
 Installs `.wgt` file that was build with `zb build`. 
 
-`device` parameter can be omitted if it's already connected to sdb and only one device is connected at the time.
-
-If `year` is omitted, CLI will try to detect device year. This may not always work. 
+`device` parameter can be omitted if it's already connected to sdb and only one device is connected at the time. 
 
 #### Running
 
