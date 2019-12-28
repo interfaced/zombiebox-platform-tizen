@@ -9,11 +9,11 @@
 
 const fse = require('fs-extra');
 const path = require('path');
-const {install, launch} = require('./cli/sdb.js');
-const {activateProfile, buildWgt} = require('./cli/tizen');
+const {connect, install, launch} = require('./cli/sdb.js');
+const {activateProfile, buildWgt, uninstall} = require('./cli/tizen');
 const {parseXml} = require('./cli/utils');
 
-const {AbstractPlatform} = require('zombiebox');
+const {AbstractPlatform, Application} = require('zombiebox');
 
 
 /**
@@ -50,6 +50,8 @@ class Tizen extends AbstractPlatform {
 					const pathHelper = app.getPathHelper();
 					const {sdbDir} = config.platforms.tizen;
 
+					const applicationId = await this._getApplicationId(app);
+
 					const distDir = pathHelper.getDistDir({
 						baseDir: config.project.dist,
 						version: app.getAppVersion(),
@@ -65,7 +67,7 @@ class Tizen extends AbstractPlatform {
 						);
 
 						if (wgtPath) {
-							return install(sdbDir, wgtPath, device);
+							return install(sdbDir, applicationId, wgtPath, device);
 						}
 					}
 
@@ -82,14 +84,34 @@ class Tizen extends AbstractPlatform {
 				async ({device}) => {
 					const config = app.getConfig();
 
-					const configXml = await this._resolveConfigXmlPath(app)
-						.then((file) => fse.readFile(file, 'utf-8'))
-						.then((xml) => parseXml(xml));
-
-					const applicationId = configXml.widget['tizen:application'][0].$.id;
+					const applicationId = await this._getApplicationId(app);
 					const {sdbDir} = config.platforms.tizen;
 
 					await launch(sdbDir, applicationId, device);
+				}
+			)
+			.command(
+				'uninstall [device]',
+				'Uninstalls application from device',
+				(yargs) => yargs
+					.positional('device', {
+						describe: 'Device name or IP address'
+					})
+					.positional('pkgId', {
+						describe: 'Application pkg identifier'
+					}),
+				async ({device}) => {
+					const config = app.getConfig();
+
+					const pkgId = await this._getApplicationId(app);
+					const {sdbDir, tizenToolsDir} = config.platforms.tizen;
+
+					if (device) {
+						const serialNo = await connect(sdbDir, device);
+						await uninstall(tizenToolsDir, pkgId, serialNo);
+					} else {
+						await uninstall(tizenToolsDir, pkgId);
+					}
 				}
 			)
 			.demandCommand(1, 1, 'No command specified');
@@ -184,6 +206,18 @@ class Tizen extends AbstractPlatform {
 
 		console.warn('Using default config.xml');
 		return defaultPath;
+	}
+
+	/**
+	 * @param {Application} app
+	 * @return {Promise<string>}
+	 * @protected
+	 */
+	async _getApplicationId(app) {
+		const configXmlPath = await this._resolveConfigXmlPath(app);
+		const xml = await fse.readFile(configXmlPath, 'utf-8');
+		const data = await parseXml(xml);
+		return data.widget['tizen:application'][0].$.id;
 	}
 
 	/**

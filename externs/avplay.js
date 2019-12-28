@@ -494,6 +494,25 @@ AVPlay.prototype.setDisplayMethod = function(displayMode) {};
 
 
 /**
+ * @param {string} type
+ * @see AVPlayDrmType
+ * @param {string} operation
+ * @see AVPlayDrmOperation
+ * @param {string} params
+ * @return {string}
+ */
+AVPlay.prototype.setDrm = function(type, operation, params) {};
+
+
+/**
+ * @param {string} drmType
+ * @see AVPlayDrmType
+ * @return {string}
+ */
+AVPlay.prototype.getUID = function(drmType) {};
+
+
+/**
  * @param {string} trackType
  * @see AVPlayStreamType
  * @param {number} trackIndex

@@ -6,6 +6,24 @@ module.exports = {
 			extends: 'interfaced/esm',
 			settings: {
 				'import/resolver': 'zombiebox'
+			},
+			rules: {
+				'jsdoc/no-undefined-types': ['error', {
+					definedTypes: [
+						// See externs
+						'msf',
+						'Tizen',
+						'Webapis',
+						'AVPlay',
+						'AudioControlManager',
+						'WebAPIError',
+						'ProductInfoManager',
+						'PreviewManager',
+						'AppCommonManager',
+						'SystemInfo',
+						'SystemInfoPropertyId',
+					]
+				}]
 			}
 		},
 		{
@@ -19,13 +37,13 @@ module.exports = {
 				webapis: 'readonly'
 			}
 		},
-		// TODO: either tune externs configs or restructurize externs here
 		{
 			files: ['externs/*.js'],
 			extends: 'interfaced/externs',
 			rules: {
 				'jsdoc/require-returns-check': 'off',
-				'jsdoc/check-tag-names': 'off'
+				'jsdoc/check-tag-names': 'off',
+				'jsdoc/no-undefined-types': 'off'
 			}
 		},
 		{

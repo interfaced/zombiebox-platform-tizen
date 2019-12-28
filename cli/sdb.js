@@ -23,19 +23,17 @@ async function connect(sdbDir, host) {
 	const sdb = getSdbBinary(sdbDir);
 
 	if (host) {
-		return execAndConfirm(
+		await execAndConfirm(
 			`${sdb} connect ${host}`,
 			'connected'
-		)
-			.then(() => execAndConfirm(
-				`${sdb} get-serialno`,
-				'',
-				`Connected to ${host}`
-			))
-			.catch((e) => Promise.reject(
-				new Error(`Couldn't connect to ${host}: ${e}.\nIs development mode enabled on the device?`)
-			));
+		);
+		return execAndConfirm(
+			`${sdb} -s ${host} get-serialno`,
+			'',
+			`Connected to ${host}`
+		);
 	}
+
 	const devicesResponse = await execAndConfirm(
 		`${sdb} devices`,
 		'List of devices attached'
@@ -58,11 +56,12 @@ async function connect(sdbDir, host) {
 
 /**
  * @param {string} sdbDir
+ * @param {string} name
  * @param {string} wgtPath
  * @param {string=} host
  * @return {Promise}
  */
-async function install(sdbDir, wgtPath, host) {
+async function install(sdbDir, name, wgtPath, host) {
 	const sdb = getSdbBinary(sdbDir);
 
 	console.log('Installation started');
@@ -79,8 +78,9 @@ async function install(sdbDir, wgtPath, host) {
 		'Wgt-file successfully pushed on TV'
 	);
 
+	// This command is not documented anywhere and just works magically
 	await execAndConfirm(
-		`${sdb} -s ${serialno} shell 0 vd_appinstall appis ${uploadPath}/${path.basename(wgtPath)}`,
+		`${sdb} -s ${serialno} shell 0 vd_appinstall ${name} ${uploadPath}/${path.basename(wgtPath)}`,
 		'install completed',
 		'Wgt-file successfully installed on TV'
 	);
@@ -97,14 +97,29 @@ async function install(sdbDir, wgtPath, host) {
  */
 async function launch(sdbDir, applicationId, host) {
 	const sdb = getSdbBinary(sdbDir);
-
 	const serialno = await connect(sdbDir, host);
 
-	await execAndConfirm(
-		`${sdb} -s ${serialno} shell 0 debug ${applicationId} 300`,
+	// This command is not documented either and also just works magically.
+	// The last parameter, 300 is even more magic: Some tvs fail quietly without it,
+	// others on the contrary only launch apps if it's not present.
+	// Some require it, report it as erroneous but then still work.
+	// ¯\_(ツ)_/¯
+	const portOutput = await execAndConfirm(
+		`${sdb} -s ${serialno} shell 0 debug ${applicationId}`,
 		'launch',
 		'The app was launched'
-	);
+	).catch(async (stderr) => {
+		if (stderr === 'closed') {
+			return execAndConfirm(
+				`${sdb} -s ${serialno} shell 0 debug ${applicationId} 300`,
+				'launch',
+				'The app was launched'
+			);
+		}
+		throw stderr;
+	});
+
+	console.log(portOutput);
 }
 
 /**
@@ -136,6 +151,7 @@ function getSdbBinary(toolsDir) {
 }
 
 module.exports = {
+	connect,
 	install,
 	launch
 };

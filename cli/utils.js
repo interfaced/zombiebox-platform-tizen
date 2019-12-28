@@ -32,7 +32,7 @@ async function execAndConfirm(command, successResponse, successMessage) {
 				if (stderr) {
 					console.error(stderr);
 				}
-				reject(stderr || stdout.trim());
+				reject(stderr ? stderr.trim() : stdout.trim());
 			}
 		});
 	});

@@ -1,3 +1,45 @@
+## 2.2.0 (28.12.2019)
+Functionally identical to `2.2.0-rc.1`. Changes listed are since last stable release (`2.1.7`)
+
+* Introduced `IStatefulVideo` implementation with state machine and DRM support
+* Added uninstall command to CLI
+* Improved stability of CLI commands
+
+# 2.2.0-rc.1 (27.12.2019)
+* Added uninstall command to CLI
+* Replace deprecated `getCapabilities` api with `getCapability`
+
+# 2.2.0-alpha.7 (19.12.2019)
+* Fix fullscreen behavior on Tizen 2.x
+* Improve stability of DRM operations
+
+# 2.2.0-alpha.6 (17.12.2019)
+
+* Updated `Viewport` to always deal in app coordinates
+* Refactor `Viewport` and fix fullscreen behavior on Tizen 5.0
+* Implement `getPanelResolution` and `getOSDResolution` in `Info`
+
+# 2.2.0-alpha.5 (12.12.2019)
+
+* Added 4K and 8K support
+* CLI now installs and launches apps consistently across all devices
+
+# 2.2.0-alpha.4 (06.12.2019)
+
+* Fix starting playback from position on some models 
+
+# 2.2.0-alpha.3 (05.12.2019)
+
+* Verimatrix VCAS DRM support
+
+# 2.2.0-alpha.2 (02.12.2019)
+
+* Add base DRM and PlayReady support.
+
+# 2.2.0-alpha.1 (20.11.2019)
+
+* Implement `IStatefulVideo` and `Device.createStatefulVideo`
+
 # 2.1.7 (01.10.2019)
 
 * CLI was refactored and its usage simplified. No longer required device year parameter.

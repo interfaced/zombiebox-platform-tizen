@@ -110,6 +110,11 @@ class ProductInfoManager {
 	isUdPanelSupported() {}
 
 	/**
+	 * @return {boolean}
+	 */
+	is8KPanelSupported() {}
+
+	/**
 	 * This method get real model name (e.g: UN65JS9500)
 	 * Since : 1.0
 	 * Privilege level: public

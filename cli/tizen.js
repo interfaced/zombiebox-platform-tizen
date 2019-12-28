@@ -76,15 +76,33 @@ async function activateProfile(toolsDir, name) {
 /**
  * @param {string} toolsDir
  * @param {string} securityProfile
- * @param {string} distDir
+ * @param {string} srcDir
+ * @param {string=} outDir
  * @return {Promise}
  */
-async function buildWgt(toolsDir, securityProfile, distDir) {
+async function buildWgt(toolsDir, securityProfile, srcDir, outDir = srcDir) {
 	const tizen = getTizenBinary(toolsDir);
 
 	return exec(
-		`${tizen} package -t wgt -s ${securityProfile} -- ${distDir} -o ${distDir}`,
+		`${tizen} package -t wgt -s ${securityProfile} -- ${srcDir} -o ${outDir}`,
 		'Package File Location'
+	);
+}
+
+
+/**
+ * @param {string} toolsDir
+ * @param {string} pkgId
+ * @param {string=} serialNo
+ * @return {Promise}
+ */
+async function uninstall(toolsDir, pkgId, serialNo) {
+	const tizen = getTizenBinary(toolsDir);
+
+	return exec(
+		`${tizen} uninstall --pkgid ${pkgId}` + ((serialNo !== undefined) ? ` --serial ${serialNo}` : ''),
+		'uninstall completed',
+		'Application uninstalled'
 	);
 }
 
@@ -121,5 +139,6 @@ async function exec(command, successResponse, successMessage) {
 
 module.exports = {
 	activateProfile,
-	buildWgt
+	buildWgt,
+	uninstall
 };
