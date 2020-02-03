@@ -1,3 +1,7 @@
+## 2.2.1 (03.02.2020)
+* Support ZombieBox 2.6
+* Better logging and output
+
 ## 2.2.0 (28.12.2019)
 Functionally identical to `2.2.0-rc.1`. Changes listed are since last stable release (`2.1.7`)
 

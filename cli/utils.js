@@ -1,7 +1,7 @@
 /*
  * This file is part of the ZombieBox package.
  *
- * Copyright © 2015-2019, Interfaced
+ * Copyright © 2015-2020, Interfaced
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,16 +21,19 @@ const parseXMLString = require('xml2js').parseString;
  * @return {Promise}
  */
 async function execAndConfirm(command, successResponse, successMessage) {
+	logger.verbose(`Executing: ${command}`);
+
 	return new Promise((resolve, reject) => {
 		childProcess.exec(command, (e, stdout, stderr) => {
 			if (stdout.includes(successResponse)) {
 				if (successMessage) {
-					console.log(successMessage);
+					logger.info(successMessage);
 				}
 				resolve(stdout.trim());
 			} else {
+				logger.debug(`Result did not include expected output`);
 				if (stderr) {
-					console.error(stderr);
+					logger.error(stderr);
 				}
 				reject(stderr ? stderr.trim() : stdout.trim());
 			}
@@ -56,7 +59,47 @@ async function parseXml(string) {
 }
 
 
+/**
+ * @typedef {{
+ *     error: function(string),
+ *     warn: function(string),
+ *     info: function(string),
+ *     verbose: function(string),
+ *     debug: function(string),
+ *     silly: function(string)
+ * }}
+ */
+let ILogger;
+
+/**
+ * @type {ILogger}
+ */
+const consoleLogger = {
+	error: console.error.bind(console),
+	warn: console.warn.bind(console),
+	info: console.info.bind(console),
+	verbose: console.log.bind(console),
+	debug: console.debug.bind(console),
+	silly: console.log.bind(console)
+};
+
+/**
+ * @type {ILogger}
+ */
+let logger = consoleLogger;
+
+
+/**
+ * @param {?ILogger} newLogger
+ */
+function attachLogger(newLogger) {
+	logger = newLogger || consoleLogger;
+}
+
+
 module.exports = {
 	execAndConfirm,
-	parseXml
+	parseXml,
+	ILogger,
+	attachLogger
 };

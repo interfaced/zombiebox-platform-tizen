@@ -1,7 +1,7 @@
 /*
  * This file is part of the ZombieBox package.
  *
- * Copyright © 2015-2019, Interfaced
+ * Copyright © 2015-2020, Interfaced
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,9 +11,12 @@ const fse = require('fs-extra');
 const path = require('path');
 const {connect, install, launch} = require('./cli/sdb.js');
 const {activateProfile, buildWgt, uninstall} = require('./cli/tizen');
-const {parseXml} = require('./cli/utils');
+const {parseXml, attachLogger} = require('./cli/utils');
 
-const {AbstractPlatform, Application} = require('zombiebox');
+const {AbstractPlatform, Application, logger: zbLogger} = require('zombiebox');
+
+const logger = zbLogger.createChild('Tizen');
+attachLogger(logger);
 
 
 /**
@@ -66,12 +69,14 @@ class Tizen extends AbstractPlatform {
 								.shift()
 						);
 
+						logger.debug(`Found wgt file: ${wgtPath}`);
+
 						if (wgtPath) {
 							return install(sdbDir, applicationId, wgtPath, device);
 						}
 					}
 
-					console.error(`Could not find .wgt file. in ${distDir}`);
+					logger.error(`Could not find .wgt file. in ${distDir}`);
 				}
 			)
 			.command(
@@ -87,7 +92,8 @@ class Tizen extends AbstractPlatform {
 					const applicationId = await this._getApplicationId(app);
 					const {sdbDir} = config.platforms.tizen;
 
-					await launch(sdbDir, applicationId, device);
+					const output = await launch(sdbDir, applicationId, device);
+					logger.output(output);
 				}
 			)
 			.command(
@@ -114,7 +120,16 @@ class Tizen extends AbstractPlatform {
 					}
 				}
 			)
-			.demandCommand(1, 1, 'No command specified');
+			.demandCommand(1, 1, 'No command specified')
+			.fail((message, error) => {
+				if (message) {
+					logger.error(message);
+				}
+				if (error instanceof Error) {
+					logger.error(error.toString());
+					logger.debug(error.stack);
+				}
+			});
 	}
 
 	/**
@@ -158,37 +173,26 @@ class Tizen extends AbstractPlatform {
 	/**
 	 * @override
 	 */
-	async buildApp(app, distDir) {
-		const buildHelper = app.getBuildHelper();
+	async pack(app, distDir) {
 		const config = app.getConfig();
 
-		const fileName = path.join(distDir, 'index.html');
 		const {securityProfile, tizenToolsDir} = config.platforms.tizen;
-
-		let allWarnings = [];
-
-		const gccWarnings = await buildHelper.writeIndexHTML(fileName);
-		allWarnings = allWarnings.concat(gccWarnings);
-
-		buildHelper.copyStaticFiles(distDir);
 
 		const configXml = await this._resolveConfigXmlPath(app);
 		await fse.copy(configXml, path.join(distDir, 'config.xml'));
 
 		await activateProfile(tizenToolsDir, securityProfile);
 
-		console.log('Building wgt');
+		logger.info('Building wgt');
 
 		await buildWgt(tizenToolsDir, securityProfile, distDir);
 
-		console.log(`The wgt package was built into ${distDir}`);
+		logger.output(`The wgt package was built into ${distDir}`);
 
 		await this._renameWgtFile(app, distDir)
 			.catch((error) => {
-				allWarnings.push(`Package widget build warnings:\n${error}`);
+				logger.error(error.toString());
 			});
-
-		return allWarnings.join('\n');
 	}
 
 	/**
@@ -204,7 +208,7 @@ class Tizen extends AbstractPlatform {
 			return configXml;
 		}
 
-		console.warn('Using default config.xml');
+		logger.warn('Using default config.xml');
 		return defaultPath;
 	}
 
@@ -217,7 +221,10 @@ class Tizen extends AbstractPlatform {
 		const configXmlPath = await this._resolveConfigXmlPath(app);
 		const xml = await fse.readFile(configXmlPath, 'utf-8');
 		const data = await parseXml(xml);
-		return data.widget['tizen:application'][0].$.id;
+		const appId = data.widget['tizen:application'][0].$.id;
+
+		logger.silly(`Resolved app id "${appId}"`);
+		return appId;
 	}
 
 	/**
@@ -230,6 +237,7 @@ class Tizen extends AbstractPlatform {
 		if (wgtFileName) {
 			const generatedWgtName = `${zbApp.getConfig().project.name}-${zbApp.getAppVersion()}`;
 
+			logger.silly(`Moving ${distDir}/${wgtFileName} to ${distDir}/${generatedWgtName}.wgt`);
 			await fse.rename(`${distDir}/${wgtFileName}`, `${distDir}/${generatedWgtName}.wgt`);
 		} else {
 			throw new Error(`Can't find .wgt file in "${distDir}"`);

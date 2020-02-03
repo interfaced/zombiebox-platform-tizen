@@ -1,5 +1,18 @@
+const copyright = [
+	'',
+	' * This file is part of the ZombieBox package.',
+	' *',
+	` * Copyright © 2015-${(new Date).getFullYear()}, Interfaced`,
+	' *',
+	' * For the full copyright and license information, please view the LICENSE',
+	' * file that was distributed with this source code.',
+	' '
+];
+
+
 module.exports = {
 	extends: 'interfaced',
+	plugins: ['header'],
 	overrides: [
 		{
 			files: ['lib/**/*.js'],
@@ -23,12 +36,19 @@ module.exports = {
 						'SystemInfo',
 						'SystemInfoPropertyId',
 					]
-				}]
+				}],
+				'header/header': ['error', 'block', copyright]
 			}
 		},
 		{
 			files: ['docs/examples/*.js', 'index.js', 'cli/*.js'],
 			extends: 'interfaced/node'
+		},
+		{
+			files: ['cli/*.js'],
+			rules: {
+				'header/header': ['error', 'block', copyright]
+			}
 		},
 		{
 			files: ['docs/examples/*.js'],

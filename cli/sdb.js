@@ -1,7 +1,7 @@
 /*
  * This file is part of the ZombieBox package.
  *
- * Copyright © 2015-2019, Interfaced
+ * Copyright © 2015-2020, Interfaced
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -64,8 +64,6 @@ async function connect(sdbDir, host) {
 async function install(sdbDir, name, wgtPath, host) {
 	const sdb = getSdbBinary(sdbDir);
 
-	console.log('Installation started');
-
 	const serialno = await connect(sdbDir, host);
 
 	const LEGACY_INSTALL_PATH = '/opt/usr/apps/tmp';
@@ -84,8 +82,6 @@ async function install(sdbDir, name, wgtPath, host) {
 		'install completed',
 		'Wgt-file successfully installed on TV'
 	);
-
-	console.log('Installation done');
 }
 
 
@@ -93,7 +89,7 @@ async function install(sdbDir, name, wgtPath, host) {
  * @param {string} sdbDir
  * @param {string} applicationId
  * @param {string} host
- * @return {Promise}
+ * @return {Promise<string>}
  */
 async function launch(sdbDir, applicationId, host) {
 	const sdb = getSdbBinary(sdbDir);
@@ -104,7 +100,7 @@ async function launch(sdbDir, applicationId, host) {
 	// others on the contrary only launch apps if it's not present.
 	// Some require it, report it as erroneous but then still work.
 	// ¯\_(ツ)_/¯
-	const portOutput = await execAndConfirm(
+	return execAndConfirm(
 		`${sdb} -s ${serialno} shell 0 debug ${applicationId}`,
 		'launch',
 		'The app was launched'
@@ -118,8 +114,6 @@ async function launch(sdbDir, applicationId, host) {
 		}
 		throw stderr;
 	});
-
-	console.log(portOutput);
 }
 
 /**
