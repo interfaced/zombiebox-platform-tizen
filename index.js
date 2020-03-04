@@ -122,6 +122,7 @@ class Tizen extends AbstractPlatform {
 			)
 			.demandCommand(1, 1, 'No command specified')
 			.fail((message, error) => {
+				yargs.showHelp();
 				if (message) {
 					logger.error(message);
 				}

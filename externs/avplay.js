@@ -925,13 +925,13 @@ AVPlay.AVPlaySubtitleAttribute;
 /**
  * @typedef {{
  *     onbufferingstart: (function()|undefined),
- *     onbufferingprogress: (function()|undefined),
+ *     onbufferingprogress: (function(number)|undefined),
  *     onbufferingcomplete: (function()|undefined),
- *     oncurrentplaytime: (function()|undefined),
+ *     oncurrentplaytime: (function(number)|undefined),
  *     onstreamcompleted: (function()|undefined),
- *     onevent: (function()|undefined),
- *     onerror: (function()|undefined),
- *     ondrmevent: (function()|undefined),
+ *     onevent: (function(string, string)|undefined),
+ *     onerror: (function(string)|undefined),
+ *     ondrmevent: (function(string, Object)|undefined),
  *     onsubtitlechange: (function()|undefined)
  * }}
  */

@@ -1,3 +1,7 @@
+## 2.2.2 (04.03.2020)
+* Update to ZombieBox 2.7
+* Fix missing default Playready license server parameter
+
 ## 2.2.1 (03.02.2020)
 * Support ZombieBox 2.6
 * Better logging and output
