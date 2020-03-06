@@ -1,3 +1,6 @@
+## 2.2.3 (06.03.2020)
+* Add `IStatefulVideo.getEngine` method that exposes AVPlay
+
 ## 2.2.2 (04.03.2020)
 * Update to ZombieBox 2.7
 * Fix missing default Playready license server parameter
