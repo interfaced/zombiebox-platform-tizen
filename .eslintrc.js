@@ -2,7 +2,7 @@ const copyright = [
 	'',
 	' * This file is part of the ZombieBox package.',
 	' *',
-	` * Copyright © 2015-${(new Date).getFullYear()}, Interfaced`,
+	` * Copyright © 2015-${(new Date()).getFullYear()}, Interfaced`,
 	' *',
 	' * For the full copyright and license information, please view the LICENSE',
 	' * file that was distributed with this source code.',
@@ -34,14 +34,14 @@ module.exports = {
 						'PreviewManager',
 						'AppCommonManager',
 						'SystemInfo',
-						'SystemInfoPropertyId',
+						'SystemInfoPropertyId'
 					]
 				}],
 				'header/header': ['error', 'block', copyright]
 			}
 		},
 		{
-			files: ['docs/examples/*.js', 'index.js', 'cli/*.js'],
+			files: ['docs/examples/*.js', 'index.js', 'cli/*.js', '.eslintrc.js'],
 			extends: 'interfaced/node'
 		},
 		{

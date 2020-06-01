@@ -1,7 +1,7 @@
 {
   "name": "zombiebox-platform-tizen",
   "description": "Samsung Tizen Smart TV support abstraction layer for ZombieBox framework",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "license": "MIT",
   "author": "Interfaced (http://interfaced.tv)",
   "homepage": "https://github.com/interfaced/zombiebox-platform-tizen",
@@ -40,21 +40,21 @@
   },
   "dependencies": {
     "eslint-plugin-header": "^3.0.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.1.0",
     "eslint-config-interfaced": "^2.0.0",
     "eslint-import-resolver-zombiebox": "^1.0.1",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-interfaced": "^2.0.0",
-    "eslint-plugin-jsdoc": "^22.0.0",
-    "eslint-plugin-node": "^11.0.0",
-    "espree": "^6.2.0",
-    "zombiebox": "^2.7.0"
+    "eslint-plugin-jsdoc": "^26.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "espree": "^7.0.0",
+    "zombiebox": "^2.7.2"
   },
   "peerDependencies": {
-    "zombiebox": "^2.7.0"
+    "zombiebox": "^2.7.2"
   }
 }

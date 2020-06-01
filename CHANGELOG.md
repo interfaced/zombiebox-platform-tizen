@@ -1,3 +1,6 @@
+## 2.2.4 (01.06.2020)
+* Ensure viewport starts in fullscreen mode and fix brief appearance of unconfigured viewport area. 
+
 ## 2.2.3 (06.03.2020)
 * Add `IStatefulVideo.getEngine` method that exposes AVPlay
 
