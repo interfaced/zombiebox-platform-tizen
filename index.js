@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  */
 
-const fse = require('fs-extra');
-const path = require('path');
-const {connect, install, launch} = require('./cli/sdb.js');
-const {activateProfile, buildWgt, uninstall} = require('./cli/tizen');
-const {parseXml, attachLogger} = require('./cli/utils');
+import fse from 'fs-extra';
+import path from 'path';
+import {connect, install, launch} from './cli/sdb.js';
+import {activateProfile, buildWgt, uninstall} from './cli/tizen.js';
+import {parseXml, attachLogger} from './cli/utils.js';
 
-const {AbstractPlatform, Application, logger: zbLogger} = require('zombiebox');
+import {AbstractPlatform, Application, logger as zbLogger} from 'zombiebox';
 
 const logger = zbLogger.createChild('Tizen');
 attachLogger(logger);
@@ -33,7 +33,7 @@ class Tizen extends AbstractPlatform {
 	 * @override
 	 */
 	getSourcesDir() {
-		return path.join(__dirname, 'lib');
+		return (new URL('lib', import.meta.url)).pathname;
 	}
 
 	/**
@@ -137,6 +137,7 @@ class Tizen extends AbstractPlatform {
 	 * @override
 	 */
 	getConfig() {
+		const fullPath = (filename) => (new URL(filename, import.meta.url)).pathname;
 		return {
 			platforms: {
 				tizen: {
@@ -151,21 +152,21 @@ class Tizen extends AbstractPlatform {
 					name: 'Tizen APIs',
 					externalScripts: ['$WEBAPIS/webapis/webapis.js'],
 					externs: [
-						path.join(__dirname, 'externs', 'avplay.js'),
-						path.join(__dirname, 'externs', 'tizen.js'),
-						path.join(__dirname, 'externs', 'webapis.js'),
-						path.join(__dirname, 'externs', 'productinfo.js'),
-						path.join(__dirname, 'externs', 'appcommon.js')
+						fullPath('externs/avplay.js'),
+						fullPath('externs/tizen.js'),
+						fullPath('externs/webapis.js'),
+						fullPath('externs/productinfo.js'),
+						fullPath('externs/appcommon.js')
 					]
 				},
 				{
 					name: 'Tizen multiscreen',
-					inlineScripts: [path.join(__dirname, 'vendor', 'msf-2.3.3.min.js')],
-					externs: [path.join(__dirname, 'externs', 'msf.js')]
+					inlineScripts: [fullPath('vendor/msf-2.3.3.min.js')],
+					externs: [fullPath('externs/msf.js')]
 				},
 				{
 					name: 'Tizen Preview SDK',
-					externs: [path.join(__dirname, 'externs', 'preview.js')]
+					externs: [fullPath('externs/preview.js')]
 				}
 			]
 		};
@@ -202,7 +203,7 @@ class Tizen extends AbstractPlatform {
 	 * @protected
 	 */
 	async _resolveConfigXmlPath(app) {
-		const defaultPath = path.resolve(__dirname, 'default-config.xml');
+		const defaultPath = (new URL('default-config.xml', import.meta.url)).pathname;
 		const configXml = app.getConfig().platforms.tizen.widget;
 
 		if (configXml && await fse.pathExists(configXml)) {
@@ -249,4 +250,4 @@ class Tizen extends AbstractPlatform {
 
 /**
  */
-module.exports = Tizen;
+export default Tizen;

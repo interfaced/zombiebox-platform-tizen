@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-const os = require('os');
-const path = require('path');
-const {execAndConfirm} = require('./utils');
+import os from 'os';
+import path from 'path';
+import {execAndConfirm} from './utils.js';
 
 
 /**
@@ -19,7 +19,7 @@ const {execAndConfirm} = require('./utils');
  * @param {string=} host
  * @return {Promise<string>}
  */
-async function connect(sdbDir, host) {
+export async function connect(sdbDir, host) {
 	const sdb = getSdbBinary(sdbDir);
 
 	if (host) {
@@ -61,7 +61,7 @@ async function connect(sdbDir, host) {
  * @param {string=} host
  * @return {Promise}
  */
-async function install(sdbDir, name, wgtPath, host) {
+export async function install(sdbDir, name, wgtPath, host) {
 	const sdb = getSdbBinary(sdbDir);
 
 	const serialno = await connect(sdbDir, host);
@@ -91,7 +91,7 @@ async function install(sdbDir, name, wgtPath, host) {
  * @param {string} host
  * @return {Promise<string>}
  */
-async function launch(sdbDir, applicationId, host) {
+export async function launch(sdbDir, applicationId, host) {
 	const sdb = getSdbBinary(sdbDir);
 	const serialno = await connect(sdbDir, host);
 
@@ -144,8 +144,3 @@ function getSdbBinary(toolsDir) {
 	return path.join(toolsDir || '', 'sdb');
 }
 
-module.exports = {
-	connect,
-	install,
-	launch
-};

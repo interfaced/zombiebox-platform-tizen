@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-const childProcess = require('child_process');
-const parseXMLString = require('xml2js').parseString;
+import childProcess from 'child_process';
+import {parseString as parseXMLString} from 'xml2js';
 
 
 /**
@@ -20,7 +20,7 @@ const parseXMLString = require('xml2js').parseString;
  * @param {string=} successMessage
  * @return {Promise}
  */
-async function execAndConfirm(command, successResponse, successMessage) {
+export async function execAndConfirm(command, successResponse, successMessage) {
 	logger.verbose(`Executing: ${command}`);
 
 	return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ async function execAndConfirm(command, successResponse, successMessage) {
  * @param {string} string
  * @return {Promise<Object>}
  */
-async function parseXml(string) {
+export async function parseXml(string) {
 	return new Promise((resolve, reject) => {
 		parseXMLString(string, (err, result) => {
 			if (!err) {
@@ -69,7 +69,7 @@ async function parseXml(string) {
  *     silly: function(string)
  * }}
  */
-let ILogger;
+export let ILogger;
 
 /**
  * @type {ILogger}
@@ -92,14 +92,6 @@ let logger = consoleLogger;
 /**
  * @param {?ILogger} newLogger
  */
-function attachLogger(newLogger) {
+export function attachLogger(newLogger) {
 	logger = newLogger || consoleLogger;
 }
-
-
-module.exports = {
-	execAndConfirm,
-	parseXml,
-	ILogger,
-	attachLogger
-};

@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-const path = require('path');
-const {execAndConfirm} = require('./utils');
+import path from 'path';
+import {execAndConfirm} from './utils.js';
 
 
 /**
@@ -54,7 +54,7 @@ async function getProfiles(toolsDir) {
  * @param {string} name
  * @return {Promise}
  */
-async function activateProfile(toolsDir, name) {
+export async function activateProfile(toolsDir, name) {
 	const tizen = getTizenBinary(toolsDir);
 
 	const profiles = await getProfiles(toolsDir);
@@ -80,7 +80,7 @@ async function activateProfile(toolsDir, name) {
  * @param {string=} outDir
  * @return {Promise}
  */
-async function buildWgt(toolsDir, securityProfile, srcDir, outDir = srcDir) {
+export async function buildWgt(toolsDir, securityProfile, srcDir, outDir = srcDir) {
 	const tizen = getTizenBinary(toolsDir);
 
 	return exec(
@@ -96,7 +96,7 @@ async function buildWgt(toolsDir, securityProfile, srcDir, outDir = srcDir) {
  * @param {string=} serialNo
  * @return {Promise}
  */
-async function uninstall(toolsDir, pkgId, serialNo) {
+export async function uninstall(toolsDir, pkgId, serialNo) {
 	const tizen = getTizenBinary(toolsDir);
 
 	return exec(
@@ -135,10 +135,3 @@ async function exec(command, successResponse, successMessage) {
 		throw e;
 	});
 }
-
-
-module.exports = {
-	activateProfile,
-	buildWgt,
-	uninstall
-};
