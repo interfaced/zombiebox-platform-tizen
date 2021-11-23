@@ -484,7 +484,7 @@ ApplicationManager.prototype.launch = function(id, successCallback, errorCallbac
  * @param {ApplicationControl} appControl
  * @param {string} id
  * @param {SuccessCallback=} successCallback
- * @param {TizenErrorCallback} errorCallback
+ * @param {TizenErrorCallback=} errorCallback
  * @param {ApplicationControlDataArrayReplyCallback=} replyCallback
  * @memberof ApplicationManager
  * @return {void}
@@ -5159,7 +5159,7 @@ TVInputDeviceManager.prototype.unregisterKey = function(keyName) {};
  * Registers a batch of input device keys to receive DOM keyboard events when any of them is pressed or released.
  * @param {Array<string>} keyNames
  * @param {SuccessCallback=} successCallback
- * @param {TizenErrorCallback} errorCallback
+ * @param {TizenErrorCallback=} errorCallback
  */
 TVInputDeviceManager.prototype.registerKeyBatch = function(keyNames, successCallback, errorCallback) {};
 
@@ -5167,7 +5167,7 @@ TVInputDeviceManager.prototype.registerKeyBatch = function(keyNames, successCall
  * Unregisters a batch of input device keys.
  * @param {Array<string>} keyNames
  * @param {SuccessCallback=} successCallback
- * @param {TizenErrorCallback} errorCallback
+ * @param {TizenErrorCallback=} errorCallback
  */
 TVInputDeviceManager.prototype.unregisterKeyBatch = function(keyNames, successCallback, errorCallback) {};
 
