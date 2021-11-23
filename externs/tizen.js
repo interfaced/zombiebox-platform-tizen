@@ -435,14 +435,14 @@ ApplicationManager.prototype.getCurrentApplication = function() {};
 
 /**
  * Kills an application with the specified application context ID.
- * The ErrorCallback() is launched with these error types:
+ * The errorCallback() is launched with these error types:
  * NotFoundError - If the context is not found with specified context ID.
  * InvalidValuesError - If any of the input parameters contain an invalid value
  * or if the specified context ID matches the context ID of the calling application.
  * UnknownError - If any other error occurs.
  * @param {string} contextId
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ApplicationManager
  * @return {void}
  */
@@ -450,13 +450,13 @@ ApplicationManager.prototype.kill = function(contextId, successCallback, errorCa
 
 /**
  * Launches an application with the given application ID.
- * The ErrorCallback() is launched with these error types:
+ * The errorCallback() is launched with these error types:
  * NotFoundError - If the application is not found with given ID.
  * InvalidValuesError - If any of the input parameters contain an invalid value.
  * UnknownError - If any other error occurs.
  * @param {string} id
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ApplicationManager
  * @return {void}
  */
@@ -477,14 +477,14 @@ ApplicationManager.prototype.launch = function(id, successCallback, errorCallbac
  * information about what the application is doing. The launched application
  * can send a result to the caller application with the replyResult() method of
  * RequestedApplicationControl interface.
- * The ErrorCallback() is launched with these error types:
+ * The errorCallback() is launched with these error types:
  * NotFoundError - If system cannot find the application that matches the specified application control.
  * InvalidValuesError - If any of the input parameters contain an invalid value.
  * UnknownError: If any other error occurs.
  * @param {ApplicationControl} appControl
  * @param {string} id
  * @param {SuccessCallback=} successCallback
- * @param {ErrorCallback=} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {ApplicationControlDataArrayReplyCallback=} replyCallback
  * @memberof ApplicationManager
  * @return {void}
@@ -500,12 +500,12 @@ ApplicationManager.prototype.launchAppControl = function(
 /**
  * Finds application information can be launched with the given application control.
  * An application can get a list of other applications can be launched with the application control.
- * The ErrorCallback() is launched with these error types:
+ * The errorCallback() is launched with these error types:
  * InvalidValuesError - If any of the input parameters contain an invalid value.
  * UnknownError - If any other error occurs.
  * @param {ApplicationControl} appControl
  * @param {FindAppControlSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ApplicationManager
  * @return {void}
  */
@@ -517,7 +517,7 @@ ApplicationManager.prototype.findAppControl = function(appControl, successCallba
  * The errorCallback() is launched with this error type:
  * UnknownError - If an unknown error occurs.
  * @param {ApplicationContextArraySuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ApplicationManager
  * @return {void}
  */
@@ -539,7 +539,7 @@ ApplicationManager.prototype.getAppContext = function(contextId) {};
  * The errorCallback() is launched with this error type:
  * UnknownError - If an unknown error occurs.
  * @param {ApplicationInformationArraySuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ApplicationManager
  * @return {void}
  */
@@ -1136,7 +1136,7 @@ ContentManager.prototype.update = function(content) {};
  * UnknownError: In any other error case.
  * @param {Array} contents
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ContentManager
  * @return {void}
  */
@@ -1149,7 +1149,7 @@ ContentManager.prototype.updateBatch = function(contents, successCallback, error
  * The errorCallback is launched with this error type:
  * UnknownError: In any other error case.
  * @param {ContentDirectoryArraySuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ContentManager
  * @return {void}
  */
@@ -1164,7 +1164,7 @@ ContentManager.prototype.getDirectories = function(successCallback, errorCallbac
  * InvalidValuesError: If any of the input parameters contain an invalid value.
  * UnknownError: In any other error case.
  * @param {ContentArraySuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {string} directoryId
  * @param {AbstractFilter} filter
  * @param {SortMode} sortMode
@@ -1189,7 +1189,7 @@ ContentManager.prototype.find = function(
  * to insert or update the content in the content database.
  * @param {string} contentURI
  * @param {ContentScanSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ContentManager
  * @return {void}
  */
@@ -1563,14 +1563,14 @@ let FileMode = {
  * Permission for the requested access is obtained from the security framework. Once the resulting File object has
  * access, access is inherited by any other File objects that are derived from this instance without any further
  * reference to the security framework, as noted in descriptions of certain methods of File.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *   For example, the mode is not valid (that is, it is not "r", "rw", "a", or "w").
  *  NotFoundError - If the location input argument does not correspond to a valid location.
  *  UnknownError - If any other error occurs.
  * @param {string} location
  * @param {FileSuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @param {FileMode} mode
  * @memberof FileSystemManager
  * @return {void}
@@ -1581,13 +1581,13 @@ FileSystemManager.prototype.resolve = function(location, onsuccess, onerror, mod
  * Gets information about a storage based on its label.For example: "MyThumbDrive", "InternalFlash".
  * The onsuccess method receives the data structure as an input argument containing additional
  * information about the drive.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  NotFoundError - If no drive was found with the given label.
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  UnknownError - If any other error occurs.
  * @param {string} label
  * @param {FileSystemStorageSuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof FileSystemManager
  * @return {void}
  */
@@ -1601,11 +1601,11 @@ FileSystemManager.prototype.getStorage = function(label, onsuccess, onerror) {};
  * if supported. The vfat filesystem used to sdcard filesystem widely is not case-sensitive. If you want to handle
  * the file on sdcard, you need to consider case-sensitive filenames are regarded as same name.
  * Labels can differ depending on platform implementation.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  UnknownError - If any other error occurs.
  * @param {FileSystemStorageArraySuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof FileSystemManager
  * @return {void}
  */
@@ -1620,7 +1620,7 @@ FileSystemManager.prototype.listStorages = function(onsuccess, onerror) {};
  * The watch operation must continue until the removeStorageStateChangeListener() method is called with
  * the corresponding subscription identifier.
  * @param {FileSystemStorageSuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof FileSystemManager
  * @return {number}
  */
@@ -1867,12 +1867,12 @@ let FileFilter;
  * the full list of files in the directory.
  * If the directory does not contain any files or directories, or the filter criteria does not matched with any
  * files or directories, the onsuccess() is invoked with an empty array.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  IOError - If the operation is launched on a file (not a directory).
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  UnknownError - If any other error occurs.
  * @param {FileArraySuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @param {FileFilter} filter
  * @memberof File
  * @return {void}
@@ -1886,13 +1886,13 @@ File2.prototype.listFiles = function(onsuccess, onerror, filter) {};
  * The returned FileStream instance includes a file pointer, which represents the current position in the file.
  * The file pointer, by default, is at the start of the file, except in the case of opening a file in append ("a")
  * mode, in which case the file pointer points to the end of the file.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contains an invalid value.
  *  IOError - The operation is launched on a directory (not a file), the file is not valid or it does not exist.
  *  UnknownError - If any other error occurs.
  * @param {FileMode} mode
  * @param {FileStreamSuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @param {string} encoding
  * @memberof File
  * @return {void}
@@ -1903,13 +1903,13 @@ File2.prototype.openStream = function(mode, onsuccess, onerror, encoding) {};
  * Reads the content of a file as a DOMstring.
  * If the operation is successfully executed, the onsuccess() method is invoked and a DOMstring is passed as
  * input parameter that represents the file content in the format determined by the encoding parameter.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  IOError - If the operation is launched on a directory (not a file), the file is not valid, or the file
  *  does not exist.
  *  UnknownError - If any other error occurs.
  * @param {FilestringSuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @param {string} encoding
  * @memberof File
  * @return {void}
@@ -1924,7 +1924,7 @@ File2.prototype.readAsText = function(onsuccess, onerror, encoding) {};
  * The file or directory to copy must be under the Directory from which the method is invoked, otherwise
  * the operation must not be performed.
  * If the copy is performed successfully, the onsuccess() method is invoked.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  NotFoundError - If the originFilePath does not correspond to a valid file or destinationPath is not a valid path.
  *  IOError - If the file in which the copyTo() method is invoked is a file (and not a directory),
@@ -1935,7 +1935,7 @@ File2.prototype.readAsText = function(onsuccess, onerror, encoding) {};
  * @param {string} destinationFilePath
  * @param {boolean} overwrite
  * @param {SuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof File
  * @return {void}
  */
@@ -1950,7 +1950,7 @@ File2.prototype.copyTo = function(originFilePath, destinationFilePath, overwrite
  * The file to move must be under the directory from which the method is invoked, else the operation
  * can not be performed.
  * If the file or directory is moved successfully, the onsuccess() method is invoked.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  NotFoundError - If originFilePath does not correspond to a valid file or destinationPath is not a valid path.
  *  IOError - If the File in which the moveTo() method is invoked is a file (not a directory),
@@ -1961,7 +1961,7 @@ File2.prototype.copyTo = function(originFilePath, destinationFilePath, overwrite
  * @param {string} destinationFilePath
  * @param {boolean} overwrite
  * @param {SuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof File
  * @return {void}
  */
@@ -2013,7 +2013,7 @@ File2.prototype.resolve = function(filePath) {};
  * be deleted. If the recursive parameter is set to false, the directory is only deleted if it is empty, otherwise
  * an IOError error type will be passed in onerror().
  * If the deletion is performed successfully, the onsuccess() is invoked.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  *  InvalidValuesError - If any of the input parameters contain an invalid value.
  *  NotFoundError -If the passed directory does not correspond to a valid directory.
  *  IOError - If the File in which the delete method is invoked is a file (and not a directory),
@@ -2025,7 +2025,7 @@ File2.prototype.resolve = function(filePath) {};
  * @param {string} directoryPath
  * @param {boolean} recursive
  * @param {SuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof File
  * @return {void}
  */
@@ -2034,7 +2034,7 @@ File2.prototype.deleteDirectory = function(directoryPath, recursive, onsuccess, 
 /**
  * Deletes a specified file.This function attempts to asynchronously delete a file under the current directory.
  * If the deletion is performed successfully, the onsuccess() is invoked.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  * InvalidValuesError - If any of the input parameters contain an invalid value.
  *  NotFoundError - If the file does not correspond to a valid file.
  *  IOError - If the file in which the delete() method is invoked is a file (not a directory),
@@ -2042,7 +2042,7 @@ File2.prototype.deleteDirectory = function(directoryPath, recursive, onsuccess, 
  *  UnknownError - If any other error occurs.
  * @param {string} filePath
  * @param {SuccessCallback} onsuccess
- * @param {ErrorCallback} onerror
+ * @param {TizenErrorCallback} onerror
  * @memberof File
  * @return {void}
  */
@@ -2194,12 +2194,12 @@ PackageInformation.prototype.appIds;
  * Installs a package with a specified package path on a device.
  * This API provides a way to notify the progress and completion of an installation request
  * through PackageProgressCallback.
- * The ErrorCallback() is launched with these error types:
+ * The errorCallback() is launched with these error types:
  *  NotFoundError - If the package is not found in the specified path.
  *  UnknownError - If it is not allowed to install the package by platform or any other platform error occurs.
  * @param {string} path
  * @param {PackageProgressCallback} progressCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof PackageManager
  * @return {void}
  */
@@ -2209,12 +2209,12 @@ PackageManager.prototype.install = function(path, progressCallback, errorCallbac
  * Uninstalls the package with a specified package ID.
  * This API provides a way to notify about the progress and completion of an uninstallation request
  * through PackageProgressCallback.
- * The ErrorCallback() is launched with these error types:
+ * The errorCallback() is launched with these error types:
  *  NotFoundError - If the package is not found with specified ID.
  *  UnknownError - If it is not allowed to uninstall the package from the platform or any other platform error occurs.
  * @param {string} id
  * @param {PackageProgressCallback} progressCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof PackageManager
  * @return {void}
  */
@@ -2226,7 +2226,7 @@ PackageManager.prototype.uninstall = function(id, progressCallback, errorCallbac
  * The errorCallback() is launched with this error type:
  *  UnknownError - If any other platform error occurs.
  * @param {PackageInformationArraySuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof PackageManager
  * @return {void}
  */
@@ -3263,7 +3263,7 @@ SystemInfo.prototype.getNativeApiVersion = function() {};
  *  UnknownError - If any other error occurs.
  * @param {SystemInfoPropertyId} property
  * @param {SystemInfoPropertySuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof SystemInfo
  * @return {void}
  */
@@ -4163,12 +4163,12 @@ function CompositeFilter() {}
 
 /**
  * This interface is used in methods that require only an error as input parameter in the error callback.
- * If an invalid function (such as null) is passed to the API that accepts ErrorCallback, it silently fails
+ * If an invalid function (such as null) is passed to the API that accepts TizenErrorCallback, it silently fails
  * and there is no further action.
  * Arguments: error
  * @typedef {function(WebAPIError)}
  */
-let ErrorCallback;
+let TizenErrorCallback;
 
 /**
  * Generic exception interface.
@@ -4863,13 +4863,13 @@ let TuneOption;
  * Tunes the specified channel.
  * If there are more than one channel with the major and minor, the lowest channel
  * in all possible channels will be switched to.
- * The ErrorCallback will be launched in the following situations:
+ * The errorCallback will be launched in the following situations:
  * NotFoundError - Failed to find a requested channel
  * UnknownError - Failed to set the selected channel
  * UnknownError - onprograminforeceived for other tune
  * @param {TuneOption} tuneOption
  * @param {TuneCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {WindowType} type
  * @memberof ChannelManager
  * @return {void}
@@ -4879,13 +4879,13 @@ ChannelManager.prototype.tune = function(tuneOption, successCallback, errorCallb
 /**
  * Changes channel up.
  * When you call this api on the highest channel, the lowest channel would be tuned.
- * The ErrorCallback will be launched in the following situations:
+ * The errorCallback will be launched in the following situations:
  * NotFoundError - Failed to find the next higher channel
  * (e.g. When there is no channels in favorites list, you call tuneUp() with 'FAVORITE' tune mode.
  * UnknownError - Failed to change to the next higher channel
  * UnknownError - onprograminforeceived for other tune
  * @param {TuneCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {number} tuneMode
  * @param {WindowType} type
  * @memberof ChannelManager
@@ -4896,13 +4896,13 @@ ChannelManager.prototype.tuneUp = function(successCallback, errorCallback, tuneM
 /**
  * Changes channel down.
  * When you call this api on the lowest channel, the highest channel would be tuned.
- * The ErrorCallback will be launched in the following situations:
+ * The errorCallback will be launched in the following situations:
  * NotFoundError - Failed to find the next lower channel
  * (e.g. When there is no channels in favorites list, you call tuneDown() with 'FAVORITE' tune mode.)
  * UnknownError - Failed to change to the next lower channel
  * UnknownError - onprograminforeceived for other tune
  * @param {TuneCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {number} tuneMode
  * @param {WindowType} type
  * @memberof ChannelManager
@@ -4912,13 +4912,13 @@ ChannelManager.prototype.tuneDown = function(successCallback, errorCallback, tun
 
 /**
  * Retrieves information about all available channels.
- * The ErrorCallback will be launched in the following situations:
+ * The errorCallback will be launched in the following situations:
  * NotFoundError - Failed to find the channel (e.g. call findChannel() with invalid major and minor values
  * (e.g. non-existing channel information))
  * @param {number} major
  * @param {number} minor
  * @param {FindChannelSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof ChannelManager
  * @return {void}
  */
@@ -4930,10 +4930,10 @@ ChannelManager.prototype.findChannel = function(major, minor, successCallback, e
  * If you call getChannelList() with 'FAVORITE' tune navigation mode,
  * All favorites channels will be retreived only if you have added favorites using your remote control.
  * Empty array will be returned if there is no favorites channel on a Tizen device.
- * The ErrorCallback will be launched in the following situations:
+ * The errorCallback will be launched in the following situations:
  * NotFoundError - Failed to find the channels
  * @param {FindChannelSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {number} mode
  * @param {number} nStart
  * @param {number} number
@@ -4953,12 +4953,12 @@ ChannelManager.prototype.getCurrentChannel = function(type) {};
 /**
  * Gets a list of programs for a specific channel within a specified time duration.
  * If this method is invoked without the parameter, all available program informations are retrieved.
- * The ErrorCallback will be launched in the following situations:
+ * The errorCallback will be launched in the following situations:
  * NotFoundError - Failed to retrieve any information about the TV program
  * @param {ChannelInfo} channelInfo
  * @param {TZDate} startTime
  * @param {ProgramListSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {number} duration
  * @memberof ChannelManager
  * @return {void}
@@ -5092,7 +5092,7 @@ DisplayControlManager.prototype.is3DModeEnabled = function() {};
 /**
  * Gets the supported 3D effects.
  * @param {Mode3DEffectListSupportCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof DisplayControlManager
  * @return {void}
  */
@@ -5159,7 +5159,7 @@ TVInputDeviceManager.prototype.unregisterKey = function(keyName) {};
  * Registers a batch of input device keys to receive DOM keyboard events when any of them is pressed or released.
  * @param {Array<string>} keyNames
  * @param {SuccessCallback=} successCallback
- * @param {ErrorCallback=} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  */
 TVInputDeviceManager.prototype.registerKeyBatch = function(keyNames, successCallback, errorCallback) {};
 
@@ -5167,7 +5167,7 @@ TVInputDeviceManager.prototype.registerKeyBatch = function(keyNames, successCall
  * Unregisters a batch of input device keys.
  * @param {Array<string>} keyNames
  * @param {SuccessCallback=} successCallback
- * @param {ErrorCallback=} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  */
 TVInputDeviceManager.prototype.unregisterKeyBatch = function(keyNames, successCallback, errorCallback) {};
 
@@ -5181,7 +5181,7 @@ function TVWindowManager() {}
 /**
  * Gets the list of available windows.
  * @param {AvailableWindowListCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof TVWindowManager
  * @return {void}
  */
@@ -5191,7 +5191,7 @@ TVWindowManager.prototype.getAvailableWindows = function(successCallback, errorC
  * Changes the source of TV hole window.
  * @param {SystemInfoVideoSourceInfo} videoSource
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {WindowType} type
  * @memberof TVWindowManager
  * @return {void}
@@ -5221,7 +5221,7 @@ TVWindowManager.prototype.getSource = function(type) {};
  * NotSupportedError will be thrown if you set rectangle which is not within the boundary of the display area.
  * TypeMismatchError will be thrown if rectangle is not an array.
  * @param {WindowRectangleSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {Array} rectangle
  * @param {WindowType} type
  * @memberof TVWindowManager
@@ -5232,7 +5232,7 @@ TVWindowManager.prototype.show = function(successCallback, errorCallback, rectan
 /**
  * Hides the TV hole window on the display screen.
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {WindowType} type
  * @memberof TVWindowManager
  * @return {void}
@@ -5255,7 +5255,7 @@ let MeasurementUnit = {
  * If you set "%" as unit, ["0%", "0%", "100%", "100%"]
  * If you omit unit, the pixel("px") unit will be used as a default unit.
  * @param {WindowRectangleSuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @param {MeasurementUnit} unit
  * @param {WindowType} type
  * @memberof TVWindowManager
@@ -5275,12 +5275,12 @@ function WebSettingManager() {}
  * Sets the custom user agent string for your Web application.
  * This method allows the user to set the user agent string of the Web view in the Web application.
  * By default, the Web view in your application has the same user agent string as the Tizen browser on the device.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  * UnknownError - If any error occurs while setting the user agent string.
  * InvalidValuesError - If any of the input parameters contain an invalid value.
  * @param {string} userAgent
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof WebSettingManager
  * @return {void}
  */
@@ -5290,10 +5290,10 @@ WebSettingManager.prototype.setUserAgentstring = function(userAgent, successCall
  * Removes all the cookies saved for the Web view in your Web application.
  * The Web view in your Web application can store cookies like a browser.
  * This method allows the user to remove all the cookies saved for the Web application.
- * The ErrorCallback is launched with these error types:
+ * The errorCallback is launched with these error types:
  * UnknownError - If any error occurs while deleting the cookies.
  * @param {SuccessCallback} successCallback
- * @param {ErrorCallback} errorCallback
+ * @param {TizenErrorCallback} errorCallback
  * @memberof WebSettingManager
  * @return {void}
  */
