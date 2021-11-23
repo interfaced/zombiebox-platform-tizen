@@ -1,7 +1,7 @@
 {
   "name": "zombiebox-platform-tizen",
   "description": "Samsung Tizen Smart TV support abstraction layer for ZombieBox framework",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "license": "MIT",
   "author": "Interfaced (http://interfaced.tv)",
   "homepage": "https://github.com/interfaced/zombiebox-platform-tizen",
