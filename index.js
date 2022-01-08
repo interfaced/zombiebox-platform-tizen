@@ -177,10 +177,13 @@ class Tizen extends AbstractPlatform {
 	async pack(app, distDir) {
 		const config = app.getConfig();
 
-		const {securityProfile, tizenToolsDir} = config.platforms.tizen;
+		const {securityProfile, tizenToolsDir, iconPath} = config.platforms.tizen;
 
 		const configXml = await this._resolveConfigXmlPath(app);
 		await fse.copy(configXml, path.join(distDir, 'config.xml'));
+
+		const iconDest = await this._getIconDestination(app);
+		await fse.copy(iconPath, path.join(distDir, iconDest));
 
 		await activateProfile(tizenToolsDir, securityProfile);
 
@@ -226,6 +229,21 @@ class Tizen extends AbstractPlatform {
 
 		logger.silly(`Resolved app id "${appId}"`);
 		return appId;
+	}
+
+	/**
+	 * @param {Application} app
+	 * @return {Promise<string>}
+	 * @protected
+	 */
+	async _getIconDestination(app) {
+		const configXmlPath = await this._resolveConfigXmlPath(app);
+		const xml = await fse.readFile(configXmlPath, 'utf-8');
+		const data = await parseXml(xml);
+		const iconDest = data.widget['icon'][0].$.src;
+
+		logger.silly(`Resolved icon destination "${iconDest}"`);
+		return iconDest;
 	}
 
 	/**
