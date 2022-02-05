@@ -31,8 +31,9 @@ platforms: {
 	tizen: {
 		widget: '/path/to/config.xml',
 		tizenToolsDir: '/path/to/tizen-studio/tools/ide/bin',
-		securityProfile: 'security profile name'
-		sdbDir: '/path/to/tizen-studio/tools/'
+		securityProfile: 'security profile name',
+		sdbDir: '/path/to/tizen-studio/tools/',
+		iconPath: '/path/to/custom/icon.png'
 	}
 }
 ```
